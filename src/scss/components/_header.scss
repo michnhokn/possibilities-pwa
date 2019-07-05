@@ -1,4 +1,4 @@
-.nav-bar {
+.header {
   height: 50px;
   width: 100%;
   position: fixed;
@@ -11,14 +11,6 @@
   align-items: center;
   justify-content: flex-start;
   box-sizing: border-box;
-
-  &__menu-toggle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    margin-right: 15px;
-  }
 
   &__title {
     font-weight: bold;

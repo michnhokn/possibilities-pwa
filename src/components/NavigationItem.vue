@@ -1,5 +1,5 @@
 <template>
-    <router-link tag="div" class="sidebar-menu__item" :to="to">
+    <router-link tag="div" class="navigation__item" :to="to" @click.native="closeMenu">
         <feather-icon :name="icon"></feather-icon>
         <span><slot></slot></span>
     </router-link>
@@ -7,7 +7,7 @@
 
 <script>
     export default {
-        name: "NavItem",
+        name: "NavigationItem",
         props: {
             to: {
                 type: String,
@@ -17,6 +17,14 @@
                 type: String,
                 required: false,
                 default: 'file-text'
+            }
+        },
+        methods: {
+            closeMenu() {
+                let _this = this;
+                setTimeout(function () {
+                    _this.$store.commit('toggleMenu', false)
+                }, 120);
             }
         }
     }

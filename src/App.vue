@@ -1,23 +1,20 @@
 <template>
     <div class="possibilities-pwa">
-        <NavBar @toggleMenu="menuOpen = !menuOpen"></NavBar>
-        <SidebarMenu :menuOpen="menuOpen"></SidebarMenu>
+        <Header></Header>
         <router-view></router-view>
+        <NavigationToggle></NavigationToggle>
+        <Navigation></Navigation>
     </div>
 </template>
 
 <script>
-    import NavBar from "./components/NavBar";
-    import SidebarMenu from "./components/SidebarMenu";
+    import Header from "./components/Header";
+    import NavigationToggle from "./components/NavigationToggle";
+    import Navigation from "./components/Navigation";
 
     export default {
         name: "App",
-        components: {SidebarMenu, NavBar},
-        data() {
-            return {
-                menuOpen: false,
-            }
-        }
+        components: {Navigation, NavigationToggle, Header},
     }
 </script>
 

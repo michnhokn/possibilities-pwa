@@ -5,9 +5,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        test: 'Juhu'
+        showNavigation: false
     },
-    mutations: {},
+    mutations: {
+        toggleMenu: (state, payload) => {
+            state.showNavigation = payload
+        }
+    },
     actions: {},
-    getters: {}
+    getters: {
+        showNavigation: (state) => {
+            return state.showNavigation
+        }
+    }
 })

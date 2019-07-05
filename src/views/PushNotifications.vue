@@ -1,16 +1,15 @@
 <template>
     <main>
-        <h1>{{ name }}</h1>
-        <p>Home</p>
+        <p>Push Notifications</p>
     </main>
 </template>
 
 <script>
     export default {
-        name: "Home",
+        name: "PushNotifications",
         data() {
             return {
-                name: 'Possibilities PWA',
+                name: 'Camera',
             }
         },
     }
