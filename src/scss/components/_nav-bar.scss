@@ -1,0 +1,33 @@
+.nav-bar {
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: $primaryColor;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+
+  &__menu-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 15px;
+  }
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &__version {
+    position: absolute;
+    right: 20px;
+    color: darken($primaryColor, 20);
+    font-size: 12px
+  }
+}
