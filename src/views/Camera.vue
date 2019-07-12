@@ -69,29 +69,29 @@
                 this.benchMark.run();
             },
             prepareBenchmark() {
-                this.getUserMedia();
+                this.setUserMedia();
                 this.$refs['photo-container'].requestFullscreen();
             },
             switchCamera() {
-                let constraints = this.imageCapture.track.getConstraints();
-                if (constraints.facingMode) {
-                    constraints.facingMode = constraints.facingMode === 'user' ? 'environment' : 'user';
-                    this.imageCapture.track.applyConstraints(constraints)
+                let facingMode = this.imageCapture.track.getConstraints()['facingMode'];
+                if (facingMode !== undefined && facingMode === 'environment') {
+                    this.setUserMedia('user');
+                } else {
+                    this.setUserMedia();
                 }
-                console.log(constraints)
             },
             closeCamera() {
                 document.exitFullscreen();
             },
-            getUserMedia() {
+            setUserMedia(facingMode = 'environment') {
                 let _this = this;
                 return new Promise((resolve, reject) => {
                         navigator.mediaDevices.getUserMedia({
-                            aspectRatio: '1080/1920',
                             video: {
                                 width: 1080,
                                 height: 1920,
-                                facingMode: 'environment'
+                                aspectRatio: 0.5625,
+                                facingMode: facingMode
                             }
                         }).then(mediaStream => {
                             _this.$refs['video'].srcObject = mediaStream;

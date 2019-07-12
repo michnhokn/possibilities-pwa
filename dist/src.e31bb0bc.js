@@ -9148,7 +9148,7 @@ exports.default = _default;
       1
     ),
     _vm._v(" "),
-    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.2")])
+    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.3")])
   ])
 }
 var staticRenderFns = []
@@ -12283,32 +12283,33 @@ var _default = {
       this.benchMark.run();
     },
     prepareBenchmark: function prepareBenchmark() {
-      this.getUserMedia();
+      this.setUserMedia();
       this.$refs['photo-container'].requestFullscreen();
     },
     switchCamera: function switchCamera() {
-      var constraints = this.imageCapture.track.getConstraints();
+      var facingMode = this.imageCapture.track.getConstraints()['facingMode'];
 
-      if (constraints.facingMode) {
-        constraints.facingMode = constraints.facingMode === 'user' ? 'environment' : 'user';
-        this.imageCapture.track.applyConstraints(constraints);
+      if (facingMode !== undefined && facingMode === 'environment') {
+        this.setUserMedia('user');
+      } else {
+        this.setUserMedia();
       }
-
-      console.log(constraints);
     },
     closeCamera: function closeCamera() {
       document.exitFullscreen();
     },
-    getUserMedia: function getUserMedia() {
+    setUserMedia: function setUserMedia() {
+      var facingMode = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'environment';
+
       var _this = this;
 
       return new Promise(function (resolve, reject) {
         navigator.mediaDevices.getUserMedia({
-          aspectRatio: '1080/1920',
           video: {
             width: 1080,
             height: 1920,
-            facingMode: 'environment'
+            aspectRatio: 0.5625,
+            facingMode: facingMode
           }
         }).then(function (mediaStream) {
           _this.$refs['video'].srcObject = mediaStream;
