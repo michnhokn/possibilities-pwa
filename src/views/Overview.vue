@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="overview">
         <OverviewItem service-name="bluetooth">Bluetooth</OverviewItem>
         <OverviewItem service-name="nfc">Near Field Communication (NFC)</OverviewItem>
         <OverviewItem service-name="ondevicelight">Ambient Light</OverviewItem>

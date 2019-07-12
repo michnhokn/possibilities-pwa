@@ -12383,7 +12383,7 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main", [
+  return _c("main", { staticClass: "camera" }, [
     _c(
       "div",
       {
@@ -12483,7 +12483,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-dfd9be",
+            _scopeId: null,
             functional: undefined
           };
         })());
@@ -12503,13 +12503,9 @@ render._withStripped = true
         }
 
         
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
       }
     })();
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"views/PushNotifications.vue":[function(require,module,exports) {
+},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"views/PushNotifications.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12714,6 +12710,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "main",
+    { staticClass: "overview" },
     [
       _c("OverviewItem", { attrs: { "service-name": "bluetooth" } }, [
         _vm._v("Bluetooth")

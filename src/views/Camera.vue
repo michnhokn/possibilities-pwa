@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="camera">
         <div ref="photo-container" class="photo-container" v-show="imageCapture">
             <video ref="video" autoplay muted></video>
             <div class="controls">
@@ -130,63 +130,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    img {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        margin-bottom: 20px;
-    }
-
-    .photo-container {
-        position: relative;
-
-        video {
-            width: 100%;
-            height: 100%;
-        }
-
-        .controls {
-            position: absolute;
-            bottom: 30px;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-
-            button {
-                width: 50px;
-                padding: 0;
-                margin: 0 10px;
-
-                &.secondary {
-                    opacity: .7;
-                    transform: scale(.9);
-                }
-            }
-        }
-    }
-
-    .results {
-        margin-bottom: 20px;
-
-        p {
-            display: block;
-            border-bottom: 1px solid #ededed;
-            margin: 5px 0;
-            padding-bottom: 5px;
-
-            strong {
-                display: inline-block;
-                width: 170px;
-            }
-        }
-    }
-</style>
