@@ -5,6 +5,7 @@
         <OverviewItem service-name="ondevicelight">Ambient Light</OverviewItem>
         <OverviewItem service-name="ontouchstart">Touch Gestures</OverviewItem>
         <OverviewItem service-name="getWakeLock">Wake Lock</OverviewItem>
+        <OverviewItem service-name="caches">Cache API</OverviewItem>
     </main>
 </template>
 

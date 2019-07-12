@@ -9383,6 +9383,9 @@ var _default = {
     isHomeView: function isHomeView() {
       return this.$route.path === '/';
     }
+  },
+  mounted: function mounted() {
+    console.log(caches.cl);
   }
 };
 exports.default = _default;
@@ -12633,6 +12636,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   name: "Overview",
   components: {
@@ -12674,6 +12678,10 @@ exports.default = _default;
       _vm._v(" "),
       _c("OverviewItem", { attrs: { "service-name": "getWakeLock" } }, [
         _vm._v("Wake Lock")
+      ]),
+      _vm._v(" "),
+      _c("OverviewItem", { attrs: { "service-name": "caches" } }, [
+        _vm._v("Cache API")
       ])
     ],
     1
