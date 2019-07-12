@@ -9165,7 +9165,7 @@ exports.default = _default;
       1
     ),
     _vm._v(" "),
-    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.5")])
+    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.6")])
   ])
 }
 var staticRenderFns = []
