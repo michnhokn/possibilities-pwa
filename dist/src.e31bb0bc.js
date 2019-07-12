@@ -9170,7 +9170,7 @@ exports.default = _default;
       1
     ),
     _vm._v(" "),
-    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.7")])
+    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.8")])
   ])
 }
 var staticRenderFns = []
@@ -9378,6 +9378,11 @@ var _default = {
     Navigation: _Navigation.default,
     NavigationToggle: _NavigationToggle.default,
     Header: _Header.default
+  },
+  computed: {
+    isHomeView: function isHomeView() {
+      return this.$route.path === '/';
+    }
   }
 };
 exports.default = _default;
@@ -9401,9 +9406,9 @@ exports.default = _default;
       _vm._v(" "),
       _c("router-view"),
       _vm._v(" "),
-      _c("NavigationToggle"),
+      !_vm.isHomeView ? _c("NavigationToggle") : _vm._e(),
       _vm._v(" "),
-      _c("Navigation")
+      !_vm.isHomeView ? _c("Navigation") : _vm._e()
     ],
     1
   )

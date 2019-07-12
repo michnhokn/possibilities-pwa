@@ -2,8 +2,8 @@
     <div class="possibilities-pwa">
         <Header></Header>
         <router-view></router-view>
-        <NavigationToggle></NavigationToggle>
-        <Navigation></Navigation>
+        <NavigationToggle v-if="!isHomeView"></NavigationToggle>
+        <Navigation v-if="!isHomeView"></Navigation>
     </div>
 </template>
 
@@ -15,6 +15,11 @@
     export default {
         name: "App",
         components: {Navigation, NavigationToggle, Header},
+        computed: {
+            isHomeView() {
+                return this.$route.path === '/'
+            }
+        }
     }
 </script>
 
