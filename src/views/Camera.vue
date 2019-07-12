@@ -91,7 +91,8 @@
                                 width: 1080,
                                 height: 1920,
                                 aspectRatio: 0.5625,
-                                facingMode: facingMode
+                                facingMode: facingMode,
+                                frameRate: {ideal: 60}
                             }
                         }).then(mediaStream => {
                             _this.$refs['video'].srcObject = mediaStream;

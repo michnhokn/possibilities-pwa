@@ -9148,7 +9148,7 @@ exports.default = _default;
       1
     ),
     _vm._v(" "),
-    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.3")])
+    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.4")])
   ])
 }
 var staticRenderFns = []
@@ -12309,7 +12309,10 @@ var _default = {
             width: 1080,
             height: 1920,
             aspectRatio: 0.5625,
-            facingMode: facingMode
+            facingMode: facingMode,
+            frameRate: {
+              ideal: 60
+            }
           }
         }).then(function (mediaStream) {
           _this.$refs['video'].srcObject = mediaStream;
