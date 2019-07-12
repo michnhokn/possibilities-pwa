@@ -29,7 +29,8 @@
                 imageCapture: null,
                 imageSrc: null,
                 photoWidth: 0,
-                photoHeight: 0
+                photoHeight: 0,
+
             }
         },
         filters: {
@@ -85,6 +86,7 @@
                     navigator.mediaDevices.getUserMedia({video: true}).then(mediaStream => {
                         _this.$refs['video'].srcObject = mediaStream;
                         _this.imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
+                        console.log(_this.imageCapture.track.getSettings());
                         resolve()
                     }).catch(error => reject(error));
                 });
