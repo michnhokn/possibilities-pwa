@@ -43,5 +43,27 @@ main {
   }
 }
 
+.overview-item {
+  width: 100%;
+  border: 1px solid $primaryColor;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 10px;
+
+  svg {
+    color: red;
+    margin-right: 10px;
+
+    &.true {
+      color: green
+    }
+  }
+}
+
 @import "components/header";
 @import "components/navigation";

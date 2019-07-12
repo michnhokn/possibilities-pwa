@@ -8933,6 +8933,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
 var _default = {
   name: "NavigationItems",
   components: {
@@ -8960,6 +8963,10 @@ exports.default = _default;
         _vm._v("Homepage")
       ]),
       _vm._v(" "),
+      _c("NavigationItem", { attrs: { icon: "box", to: "/overview" } }, [
+        _vm._v("Feature Overview")
+      ]),
+      _vm._v(" "),
       _c("NavigationItem", { attrs: { icon: "camera", to: "/camera" } }, [
         _vm._v("Camera")
       ]),
@@ -8968,7 +8975,17 @@ exports.default = _default;
         "NavigationItem",
         { attrs: { icon: "smartphone", to: "/push-notifications" } },
         [_vm._v("Push Notifications")]
-      )
+      ),
+      _vm._v(" "),
+      _c(
+        "NavigationItem",
+        { attrs: { icon: "map-pin", to: "/geo-location" } },
+        [_vm._v("Geo Location")]
+      ),
+      _vm._v(" "),
+      _c("NavigationItem", { attrs: { icon: "activity", to: "/haptics" } }, [
+        _vm._v("Haptics")
+      ])
     ],
     1
   )
@@ -9148,7 +9165,7 @@ exports.default = _default;
       1
     ),
     _vm._v(" "),
-    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.4")])
+    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.5")])
   ])
 }
 var staticRenderFns = []
@@ -12564,7 +12581,189 @@ render._withStripped = true
         
       }
     })();
-},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"router.js":[function(require,module,exports) {
+},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/OverviewItem.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "OverviewItem",
+  props: {
+    serviceName: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    iconName: function iconName() {
+      if (this.serviceName in navigator || this.serviceName in window) {
+        return 'check-circle';
+      }
+
+      return 'x-circle';
+    },
+    inNavigator: function inNavigator() {
+      return this.serviceName in navigator || this.serviceName in window;
+    }
+  }
+};
+exports.default = _default;
+        var $077a52 = exports.default || module.exports;
+      
+      if (typeof $077a52 === 'function') {
+        $077a52 = $077a52.options;
+      }
+    
+        /* template */
+        Object.assign($077a52, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "overview-item" },
+    [
+      _c("feather-icon", {
+        class: { true: _vm.inNavigator },
+        attrs: { name: _vm.iconName }
+      }),
+      _vm._v(" "),
+      _vm._t("default")
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$077a52', $077a52);
+          } else {
+            api.reload('$077a52', $077a52);
+          }
+        }
+
+        
+      }
+    })();
+},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"views/Overview.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _OverviewItem = _interopRequireDefault(require("../components/OverviewItem"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "Overview",
+  components: {
+    OverviewItem: _OverviewItem.default
+  }
+};
+exports.default = _default;
+        var $630390 = exports.default || module.exports;
+      
+      if (typeof $630390 === 'function') {
+        $630390 = $630390.options;
+      }
+    
+        /* template */
+        Object.assign($630390, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "main",
+    [
+      _c("OverviewItem", { attrs: { "service-name": "bluetooth" } }, [
+        _vm._v("Bluetooth")
+      ]),
+      _vm._v(" "),
+      _c("OverviewItem", { attrs: { "service-name": "nfc" } }, [
+        _vm._v("Near Field Communication (NFC)")
+      ]),
+      _vm._v(" "),
+      _c("OverviewItem", { attrs: { "service-name": "ondevicelight" } }, [
+        _vm._v("Ambient Light")
+      ]),
+      _vm._v(" "),
+      _c("OverviewItem", { attrs: { "service-name": "getWakeLock" } }, [
+        _vm._v("Wake Lock")
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$630390', $630390);
+          } else {
+            api.reload('$630390', $630390);
+          }
+        }
+
+        
+      }
+    })();
+},{"../components/OverviewItem":"components/OverviewItem.vue","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"router.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12582,6 +12781,8 @@ var _Camera = _interopRequireDefault(require("./views/Camera"));
 
 var _PushNotifications = _interopRequireDefault(require("./views/PushNotifications"));
 
+var _Overview = _interopRequireDefault(require("./views/Overview"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue.default.use(_vueRouter.default);
@@ -12598,6 +12799,10 @@ var routes = [{
   path: '/push-notifications',
   name: 'Push Notifications',
   component: _PushNotifications.default
+}, {
+  path: '/overview',
+  name: 'Overview',
+  component: _Overview.default
 }];
 
 var _default = new _vueRouter.default({
@@ -12605,7 +12810,7 @@ var _default = new _vueRouter.default({
 });
 
 exports.default = _default;
-},{"vue":"../node_modules/vue/dist/vue.runtime.esm.js","vue-router":"../node_modules/vue-router/dist/vue-router.esm.js","./views/Home":"views/Home.vue","./views/Camera":"views/Camera.vue","./views/PushNotifications":"views/PushNotifications.vue"}],"../node_modules/vuex/dist/vuex.esm.js":[function(require,module,exports) {
+},{"vue":"../node_modules/vue/dist/vue.runtime.esm.js","vue-router":"../node_modules/vue-router/dist/vue-router.esm.js","./views/Home":"views/Home.vue","./views/Camera":"views/Camera.vue","./views/PushNotifications":"views/PushNotifications.vue","./views/Overview":"views/Overview.vue"}],"../node_modules/vuex/dist/vuex.esm.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
