@@ -1,17 +1,21 @@
 <template>
     <main>
-        <h1>{{ name }}</h1>
-        <p>Home</p>
+        <NavigationItems/>
     </main>
 </template>
 
 <script>
+    import NavigationItems from "../components/NavigationItems";
+
     export default {
         name: "Home",
-        data() {
-            return {
-                name: 'Possibilities PWA',
-            }
-        },
+        components: {NavigationItems}
     }
 </script>
+
+
+<style lang="scss" scoped>
+    main {
+        padding: 0;
+    }
+</style>

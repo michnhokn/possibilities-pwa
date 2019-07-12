@@ -4,7 +4,7 @@
             <router-link to="/" tag="span">{{ title }}</router-link>
             {{ getRouteName() }}
         </div>
-        <p class="header__version">0.1.0</p>
+        <p class="header__version">0.1.1</p>
     </header>
 </template>
 
@@ -16,7 +16,7 @@
         components: {Navigation},
         data() {
             return {
-                title: 'Possibilities',
+                title: 'Possibilities PWA',
                 menuOpen: false
             }
         },

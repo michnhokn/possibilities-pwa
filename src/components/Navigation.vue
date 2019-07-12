@@ -1,19 +1,15 @@
 <template>
     <nav class="navigation" :class="{'navigation--open':showNavigation}">
-        <div class="navigation__items">
-            <NavigationItem icon="home" to="/">Homepage</NavigationItem>
-            <NavigationItem icon="camera" to="/camera">Camera</NavigationItem>
-            <NavigationItem icon="smartphone" to="/push-notifications">Push Notifications</NavigationItem>
-        </div>
+        <NavigationItems/>
     </nav>
 </template>
 
 <script>
-    import NavigationItem from "./NavigationItem";
+    import NavigationItems from "./NavigationItems";
 
     export default {
         name: "Navigation",
-        components: {NavigationItem},
+        components: {NavigationItems},
         computed: {
             showNavigation() {
                 return this.$store.getters.showNavigation
