@@ -12309,10 +12309,7 @@ var _default = {
             width: 1080,
             height: 1920,
             aspectRatio: 9 / 16,
-            facingMode: facingMode,
-            frameRate: {
-              ideal: 60
-            }
+            facingMode: facingMode
           }
         }).then(function (mediaStream) {
           _this.$refs['video'].srcObject = mediaStream;
