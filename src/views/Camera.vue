@@ -2,7 +2,9 @@
     <main>
         <div ref="photo-container" class="photo-container" v-show="imageCapture">
             <video ref="video" autoplay muted></video>
-            <button @click="startBenchmark">Take Photo</button>
+            <button @click="startBenchmark">
+                <feather-icon name="camera"/>
+            </button>
         </div>
         <img v-if="imageSrc" ref="image" :src="imageSrc" alt="Test image">
         <div class="results" v-if="result">
@@ -42,7 +44,11 @@
         },
         mounted() {
             let _this = this;
-
+            document.addEventListener('fullscreenchange', (event) => {
+                if (!document.fullscreenElement) {
+                    _this.imageCapture = null
+                }
+            });
             _this.benchMark = new this.$benchmark({
                 name: 'Take photo',
                 number: 1,
@@ -111,12 +117,8 @@
 </script>
 
 <style lang="scss" scoped>
-
-    img, video {
-        width: 100%;
-    }
-
     img {
+        width: 100%;
         margin-bottom: 20px;
     }
 
@@ -124,14 +126,23 @@
         margin-bottom: 20px;
     }
 
-    .test {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-direction: row;
-        background-color: #ededed;
-        width: 100%;
-        margin-bottom: 20px;
+    .photo-container {
+        position: relative;
+
+        video {
+            width: 100%;
+            height: 100%;
+        }
+
+        button {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 50px;
+            padding: 0;
+        }
     }
 
     .results {
@@ -148,13 +159,5 @@
                 width: 170px;
             }
         }
-    }
-
-    button {
-        padding: 8px 20px;
-        border: 1px solid #111111;
-        border-radius: 3px;
-        font-size: 1rem;
-        width: 100%;
     }
 </style>
