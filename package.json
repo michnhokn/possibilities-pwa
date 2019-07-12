@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "rm -rf dist/*",
-    "dev": "parcel src/index.html",
+    "dev": "parcel src/index.html --port=1237",
     "watch": "parcel watch src/index.html",
     "build": "parcel build src/index.html --no-source-maps"
   },

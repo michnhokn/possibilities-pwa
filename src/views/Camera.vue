@@ -13,6 +13,7 @@
             <p><strong>Slowest:</strong>{{ result.slowest | fixed }} ms</p>
         </div>
         <button @click="startBenchmark" v-if="imageCapture">{{ buttonText }}</button>
+        <pre v-if="capabilities">{{ capabilities }}</pre>
     </main>
 </template>
 
@@ -27,7 +28,8 @@
                 imageSrc: null,
                 buttonText: 'Take photo',
                 photoWidth: 0,
-                photoHeight: 0
+                photoHeight: 0,
+                capabilities: null
             }
         },
         filters: {
@@ -90,6 +92,7 @@
                 return new Promise((resolve, reject) => {
                     let photoCapablilities = _this.imageCapture.getPhotoCapabilities();
                     photoCapablilities.then(capabilities => {
+                        console.log(capabilities);
                         _this.imageCapture.takePhoto({
                             imageWidth: (_this.photoWidth = capabilities.imageWidth.max),
                             imageHeight: (_this.photoHeight = capabilities.imageHeight.max)
