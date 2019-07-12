@@ -73,13 +73,12 @@
                 this.$refs['photo-container'].requestFullscreen();
             },
             switchCamera() {
-                let facingMode = this.imageCapture.track.getSettings()['facingMode'];
-                if (facingMode !== undefined) {
-                    this.imageCapture.track.applyConstraints({
-                        facingMode: facingMode === "user" ? "environment" : "user"
-                    });
+                let constraints = this.imageCapture.track.getConstraints();
+                if (constraints.facingMode) {
+                    constraints.facingMode = constraints.facingMode === 'user' ? 'environment' : 'user';
+                    this.imageCapture.track.applyConstraints(constraints)
                 }
-                console.log(facingMode)
+                console.log(constraints)
             },
             closeCamera() {
                 document.exitFullscreen();
@@ -88,9 +87,10 @@
                 let _this = this;
                 return new Promise((resolve, reject) => {
                         navigator.mediaDevices.getUserMedia({
+                            aspectRatio: '1080/1920',
                             video: {
-                                width: {ideal: 1080, max: 1080},
-                                height: {ideal: 1920, max: 1920},
+                                width: 1080,
+                                height: 1920,
                                 facingMode: 'environment'
                             }
                         }).then(mediaStream => {
