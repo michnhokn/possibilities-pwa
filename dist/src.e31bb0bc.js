@@ -12273,7 +12273,7 @@ var _default = {
       fun: function fun() {
         return _this.takePhoto();
       },
-      after: function after() {
+      after: function after(result) {
         return _this.result = result;
       }
     });
@@ -12289,10 +12289,12 @@ var _default = {
     switchCamera: function switchCamera() {
       var facingMode = this.imageCapture.track.getConstraints()['facingMode'];
 
-      if (facingMode !== undefined && facingMode === 'environment') {
-        this.setUserMedia('user');
-      } else {
-        this.setUserMedia();
+      if (facingMode !== undefined) {
+        if (facingMode === 'environment') {
+          this.setUserMedia('user');
+        } else {
+          this.setUserMedia();
+        }
       }
     },
     closeCamera: function closeCamera() {
@@ -12308,7 +12310,11 @@ var _default = {
           video: {
             width: 1080,
             height: 1920,
-            facingMode: facingMode
+            aspectRatio: 9 / 16,
+            facingMode: facingMode,
+            frameRate: {
+              ideal: 60
+            }
           }
         }).then(function (mediaStream) {
           _this.$refs['video'].srcObject = mediaStream;

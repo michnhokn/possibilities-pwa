@@ -61,7 +61,7 @@
                     _this.imageSrc = null
                 },
                 fun: () => _this.takePhoto(),
-                after: () => _this.result = result
+                after: result => _this.result = result
             });
         },
         methods: {
@@ -74,10 +74,12 @@
             },
             switchCamera() {
                 let facingMode = this.imageCapture.track.getConstraints()['facingMode'];
-                if (facingMode !== undefined && facingMode === 'environment') {
-                    this.setUserMedia('user');
-                } else {
-                    this.setUserMedia();
+                if (facingMode !== undefined) {
+                    if (facingMode === 'environment') {
+                        this.setUserMedia('user');
+                    } else {
+                        this.setUserMedia();
+                    }
                 }
             },
             closeCamera() {
@@ -90,7 +92,9 @@
                             video: {
                                 width: 1080,
                                 height: 1920,
-                                facingMode: facingMode
+                                aspectRatio: 9 / 16,
+                                facingMode: facingMode,
+                                frameRate: {ideal: 60}
                             }
                         }).then(mediaStream => {
                             _this.$refs['video'].srcObject = mediaStream;
