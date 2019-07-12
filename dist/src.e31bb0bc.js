@@ -12253,10 +12253,6 @@ var _default = {
     fixed: function fixed(value) {
       if (!value) return '';
       return Number.parseFloat(value).toFixed(2);
-    },
-    toPercent: function toPercent(value) {
-      if (!value) return '';
-      return Number.parseFloat(value * 100).toFixed(1) + ' %';
     }
   },
   mounted: function mounted() {
@@ -12272,24 +12268,13 @@ var _default = {
       number: 1,
       before: function before() {
         _this.result = null;
-        _this.imageCapture = null;
         _this.imageSrc = null;
       },
       fun: function fun() {
-        return new Promise(function (resolve, reject) {
-          _this.getUserMedia().then(function () {
-            _this.takePhoto().then(function () {
-              resolve();
-            }).catch(function (error) {
-              return reject(error);
-            });
-          }).catch(function (error) {
-            return reject(error);
-          });
-        });
+        return _this.takePhoto();
       },
-      after: function after(result) {
-        _this.result = result;
+      after: function after() {
+        return _this.result = result;
       }
     });
   },
@@ -12302,7 +12287,15 @@ var _default = {
       this.$refs['photo-container'].requestFullscreen();
     },
     switchCamera: function switchCamera() {
-      console.log('switchCamera');
+      var facingMode = this.imageCapture.track.getSettings()['facingMode'];
+
+      if (facingMode !== undefined) {
+        this.imageCapture.track.applyConstraints({
+          facingMode: facingMode === "user" ? "environment" : "user"
+        });
+      }
+
+      console.log(facingMode);
     },
     closeCamera: function closeCamera() {
       document.exitFullscreen();
@@ -12326,8 +12319,6 @@ var _default = {
         }).then(function (mediaStream) {
           _this.$refs['video'].srcObject = mediaStream;
           _this.imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
-          console.log(_this.imageCapture.track);
-          console.log(_this.imageCapture.track.getSettings());
           resolve();
         }).catch(function (error) {
           return reject(error);

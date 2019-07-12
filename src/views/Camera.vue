@@ -44,10 +44,6 @@
             fixed(value) {
                 if (!value) return '';
                 return Number.parseFloat(value).toFixed(2);
-            },
-            toPercent(value) {
-                if (!value) return '';
-                return Number.parseFloat(value * 100).toFixed(1) + ' %';
             }
         },
         mounted() {
@@ -62,21 +58,10 @@
                 number: 1,
                 before() {
                     _this.result = null;
-                    _this.imageCapture = null;
                     _this.imageSrc = null
                 },
-                fun() {
-                    return new Promise((resolve, reject) => {
-                        _this.getUserMedia().then(() => {
-                            _this.takePhoto().then(() => {
-                                resolve()
-                            }).catch(error => reject(error));
-                        }).catch(error => reject(error));
-                    });
-                },
-                after(result) {
-                    _this.result = result;
-                }
+                fun: () => _this.takePhoto(),
+                after: () => _this.result = result
             });
         },
         methods: {
@@ -88,7 +73,13 @@
                 this.$refs['photo-container'].requestFullscreen();
             },
             switchCamera() {
-                console.log('switchCamera')
+                let facingMode = this.imageCapture.track.getSettings()['facingMode'];
+                if (facingMode !== undefined) {
+                    this.imageCapture.track.applyConstraints({
+                        facingMode: facingMode === "user" ? "environment" : "user"
+                    });
+                }
+                console.log(facingMode)
             },
             closeCamera() {
                 document.exitFullscreen();
@@ -105,8 +96,6 @@
                         }).then(mediaStream => {
                             _this.$refs['video'].srcObject = mediaStream;
                             _this.imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
-                            console.log(_this.imageCapture.track);
-                            console.log(_this.imageCapture.track.getSettings());
                             resolve()
                         }).catch(error => reject(error));
                     }
