@@ -1,9 +1,10 @@
 <template>
     <main>
-        <div class="test">
+        <div ref="photo-container" class="photo-container" v-show="imageCapture">
             <video ref="video" autoplay muted></video>
-            <img v-if="imageSrc" ref="image" :src="imageSrc" alt="Test image">
+            <button @click="startBenchmark">Take Photo</button>
         </div>
+        <img v-if="imageSrc" ref="image" :src="imageSrc" alt="Test image">
         <div class="results" v-if="result">
             <p><strong>Resolution:</strong>{{ photoWidth }} x {{ photoHeight }}</p>
             <p><strong>Total:</strong>{{ result.total | fixed }} ms</p>
@@ -12,8 +13,7 @@
             <p><strong>Fastest:</strong>{{ result.fastest | fixed }} ms</p>
             <p><strong>Slowest:</strong>{{ result.slowest | fixed }} ms</p>
         </div>
-        <button @click="startBenchmark" v-if="imageCapture">{{ buttonText }}</button>
-        <pre v-if="capabilities">{{ capabilities }}</pre>
+        <button @click="prepareBenchmark">Open Camera</button>
     </main>
 </template>
 
@@ -26,10 +26,8 @@
                 result: null,
                 imageCapture: null,
                 imageSrc: null,
-                buttonText: 'Take photo',
                 photoWidth: 0,
-                photoHeight: 0,
-                capabilities: null
+                photoHeight: 0
             }
         },
         filters: {
@@ -45,10 +43,6 @@
         mounted() {
             let _this = this;
 
-            _this.getUserMedia().then(() => {
-
-            }).catch(error => reject(error));
-
             _this.benchMark = new this.$benchmark({
                 name: 'Take photo',
                 number: 1,
@@ -61,7 +55,6 @@
                     return new Promise((resolve, reject) => {
                         _this.getUserMedia().then(() => {
                             _this.takePhoto().then(() => {
-                                _this.buttonText = 'Photo taken';
                                 resolve()
                             }).catch(error => reject(error));
                         }).catch(error => reject(error));
@@ -69,13 +62,16 @@
                 },
                 after(result) {
                     _this.result = result;
-                    _this.buttonText = 'Take new photo';
                 }
             });
         },
         methods: {
             startBenchmark() {
-                this.benchMark.run().catch(err => console.table(err));
+                this.benchMark.run();
+            },
+            prepareBenchmark() {
+                this.getUserMedia();
+                this.$refs['photo-container'].requestFullscreen();
             },
             getUserMedia() {
                 let _this = this;
@@ -92,7 +88,6 @@
                 return new Promise((resolve, reject) => {
                     let photoCapablilities = _this.imageCapture.getPhotoCapabilities();
                     photoCapablilities.then(capabilities => {
-                        console.log(capabilities);
                         _this.imageCapture.takePhoto({
                             imageWidth: (_this.photoWidth = capabilities.imageWidth.max),
                             imageHeight: (_this.photoHeight = capabilities.imageHeight.max)
@@ -101,6 +96,8 @@
                             reader.readAsDataURL(blob);
                             reader.onloadend = function () {
                                 _this.imageSrc = reader.result;
+                                document.exitFullscreen();
+                                _this.imageCapture = null;
                                 resolve()
                             }
                         }).catch(error => {
@@ -114,6 +111,15 @@
 </script>
 
 <style lang="scss" scoped>
+
+    img, video {
+        width: 100%;
+    }
+
+    img {
+        margin-bottom: 20px;
+    }
+
     h2 {
         margin-bottom: 20px;
     }
@@ -126,11 +132,6 @@
         background-color: #ededed;
         width: 100%;
         margin-bottom: 20px;
-
-        img, video {
-            display: block;
-            max-width: 50%;
-        }
     }
 
     .results {
