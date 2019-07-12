@@ -12229,6 +12229,14 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   name: "Camera",
   data: function data() {
@@ -12293,15 +12301,32 @@ var _default = {
       this.getUserMedia();
       this.$refs['photo-container'].requestFullscreen();
     },
+    switchCamera: function switchCamera() {
+      console.log('switchCamera');
+    },
+    closeCamera: function closeCamera() {
+      document.exitFullscreen();
+    },
     getUserMedia: function getUserMedia() {
       var _this = this;
 
       return new Promise(function (resolve, reject) {
         navigator.mediaDevices.getUserMedia({
-          video: true
+          video: {
+            width: {
+              ideal: 1080,
+              max: 1080
+            },
+            height: {
+              ideal: 1920,
+              max: 1920
+            },
+            facingMode: 'environment'
+          }
         }).then(function (mediaStream) {
           _this.$refs['video'].srcObject = mediaStream;
           _this.imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
+          console.log(_this.imageCapture.track);
           console.log(_this.imageCapture.track.getSettings());
           resolve();
         }).catch(function (error) {
@@ -12372,12 +12397,28 @@ exports.default = _default;
           domProps: { muted: true }
         }),
         _vm._v(" "),
-        _c(
-          "button",
-          { on: { click: _vm.startBenchmark } },
-          [_c("feather-icon", { attrs: { name: "camera" } })],
-          1
-        )
+        _c("div", { staticClass: "controls" }, [
+          _c(
+            "button",
+            { staticClass: "secondary", on: { click: _vm.closeCamera } },
+            [_c("feather-icon", { attrs: { name: "x" } })],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { on: { click: _vm.startBenchmark } },
+            [_c("feather-icon", { attrs: { name: "camera" } })],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "secondary", on: { click: _vm.switchCamera } },
+            [_c("feather-icon", { attrs: { name: "rotate-cw" } })],
+            1
+          )
+        ])
       ]
     ),
     _vm._v(" "),

@@ -2,9 +2,17 @@
     <main>
         <div ref="photo-container" class="photo-container" v-show="imageCapture">
             <video ref="video" autoplay muted></video>
-            <button @click="startBenchmark">
-                <feather-icon name="camera"/>
-            </button>
+            <div class="controls">
+                <button @click="closeCamera" class="secondary">
+                    <feather-icon name="x"/>
+                </button>
+                <button @click="startBenchmark">
+                    <feather-icon name="camera"/>
+                </button>
+                <button @click="switchCamera" class="secondary">
+                    <feather-icon name="rotate-cw"/>
+                </button>
+            </div>
         </div>
         <img v-if="imageSrc" ref="image" :src="imageSrc" alt="Test image">
         <div class="results" v-if="result">
@@ -30,7 +38,6 @@
                 imageSrc: null,
                 photoWidth: 0,
                 photoHeight: 0,
-
             }
         },
         filters: {
@@ -80,16 +87,30 @@
                 this.getUserMedia();
                 this.$refs['photo-container'].requestFullscreen();
             },
+            switchCamera() {
+                console.log('switchCamera')
+            },
+            closeCamera() {
+                document.exitFullscreen();
+            },
             getUserMedia() {
                 let _this = this;
                 return new Promise((resolve, reject) => {
-                    navigator.mediaDevices.getUserMedia({video: true}).then(mediaStream => {
-                        _this.$refs['video'].srcObject = mediaStream;
-                        _this.imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
-                        console.log(_this.imageCapture.track.getSettings());
-                        resolve()
-                    }).catch(error => reject(error));
-                });
+                        navigator.mediaDevices.getUserMedia({
+                            video: {
+                                width: {ideal: 1080, max: 1080},
+                                height: {ideal: 1920, max: 1920},
+                                facingMode: 'environment'
+                            }
+                        }).then(mediaStream => {
+                            _this.$refs['video'].srcObject = mediaStream;
+                            _this.imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
+                            console.log(_this.imageCapture.track);
+                            console.log(_this.imageCapture.track.getSettings());
+                            resolve()
+                        }).catch(error => reject(error));
+                    }
+                );
             },
             takePhoto() {
                 let _this = this;
@@ -136,14 +157,28 @@
             height: 100%;
         }
 
-        button {
+        .controls {
             position: absolute;
-            bottom: 20px;
+            bottom: 30px;
             left: 0;
             right: 0;
             margin: 0 auto;
-            width: 50px;
-            padding: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+
+            button {
+                width: 50px;
+                padding: 0;
+                margin: 0 10px;
+
+                &.secondary {
+                    opacity: .7;
+                    transform: scale(.9);
+                }
+            }
         }
     }
 
