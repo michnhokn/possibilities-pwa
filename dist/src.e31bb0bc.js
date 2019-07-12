@@ -8936,6 +8936,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   name: "NavigationItems",
   components: {
@@ -8985,6 +8986,10 @@ exports.default = _default;
       _vm._v(" "),
       _c("NavigationItem", { attrs: { icon: "activity", to: "/haptics" } }, [
         _vm._v("Haptics")
+      ]),
+      _vm._v(" "),
+      _c("NavigationItem", { attrs: { icon: "move", to: "/touch-gestures" } }, [
+        _vm._v("Touch Gestures")
       ])
     ],
     1
@@ -9165,7 +9170,7 @@ exports.default = _default;
       1
     ),
     _vm._v(" "),
-    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.6")])
+    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.7")])
   ])
 }
 var staticRenderFns = []
@@ -12079,74 +12084,7 @@ if (inBrowser && window.Vue) {
 
 var _default = VueRouter;
 exports.default = _default;
-},{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"views/Home.vue":[function(require,module,exports) {
+},{}],"views/Home.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12218,7 +12156,7 @@ render._withStripped = true
       
       }
     })();
-},{"../components/NavigationItems":"components/NavigationItems.vue","_css_loader":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"views/Camera.vue":[function(require,module,exports) {
+},{"../components/NavigationItems":"components/NavigationItems.vue","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"views/Camera.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12689,6 +12627,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   name: "Overview",
   components: {
@@ -12722,6 +12661,10 @@ exports.default = _default;
       _vm._v(" "),
       _c("OverviewItem", { attrs: { "service-name": "ondevicelight" } }, [
         _vm._v("Ambient Light")
+      ]),
+      _vm._v(" "),
+      _c("OverviewItem", { attrs: { "service-name": "ontouchstart" } }, [
+        _vm._v("Touch Gestures")
       ]),
       _vm._v(" "),
       _c("OverviewItem", { attrs: { "service-name": "getWakeLock" } }, [
@@ -14029,7 +13972,7 @@ render._withStripped = true
       
       }
     })();
-},{"feather-icons/dist/feather-sprite.svg":"../node_modules/feather-icons/dist/feather-sprite.svg","_css_loader":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/object-assign/index.js":[function(require,module,exports) {
+},{"feather-icons/dist/feather-sprite.svg":"../node_modules/feather-icons/dist/feather-sprite.svg","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"../node_modules/object-assign/index.js":[function(require,module,exports) {
 /*
 object-assign
 (c) Sindre Sorhus
@@ -14125,14 +14068,14 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
   return to;
 };
-},{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/assert/node_modules/util/support/isBufferBrowser.js":[function(require,module,exports) {
+},{}],"../node_modules/assert/node_modules/util/support/isBufferBrowser.js":[function(require,module,exports) {
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/assert/node_modules/inherits/inherits_browser.js":[function(require,module,exports) {
+},{}],"../node_modules/assert/node_modules/inherits/inherits_browser.js":[function(require,module,exports) {
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -14157,7 +14100,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
+},{}],"../node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -14366,7 +14309,7 @@ process.chdir = function (dir) {
 process.umask = function () {
   return 0;
 };
-},{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/assert/node_modules/util/util.js":[function(require,module,exports) {
+},{}],"../node_modules/assert/node_modules/util/util.js":[function(require,module,exports) {
 var global = arguments[3];
 var process = require("process");
 // Copyright Joyent, Inc. and other Node contributors.
@@ -14958,7 +14901,7 @@ exports._extend = function (origin, add) {
 function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
-},{"./support/isBuffer":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/assert/node_modules/util/support/isBufferBrowser.js","inherits":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/assert/node_modules/inherits/inherits_browser.js","process":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/assert/assert.js":[function(require,module,exports) {
+},{"./support/isBuffer":"../node_modules/assert/node_modules/util/support/isBufferBrowser.js","inherits":"../node_modules/assert/node_modules/inherits/inherits_browser.js","process":"../node_modules/process/browser.js"}],"../node_modules/assert/assert.js":[function(require,module,exports) {
 var global = arguments[3];
 'use strict';
 
@@ -15467,7 +15410,7 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"object-assign":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/object-assign/index.js","util/":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/assert/node_modules/util/util.js"}],"../node_modules/asyncmark/dist/asyncmark.js":[function(require,module,exports) {
+},{"object-assign":"../node_modules/object-assign/index.js","util/":"../node_modules/assert/node_modules/util/util.js"}],"../node_modules/asyncmark/dist/asyncmark.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 var process = require("process");
@@ -16563,7 +16506,7 @@ var process = require("process");
 
 }));
 
-},{"assert":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/assert/assert.js","process":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/process/browser.js"}],"index.js":[function(require,module,exports) {
+},{"assert":"../node_modules/assert/assert.js","process":"../node_modules/process/browser.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
@@ -16622,7 +16565,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58125" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57992" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

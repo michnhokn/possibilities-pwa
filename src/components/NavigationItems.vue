@@ -6,6 +6,7 @@
         <NavigationItem icon="smartphone" to="/push-notifications">Push Notifications</NavigationItem>
         <NavigationItem icon="map-pin" to="/geo-location">Geo Location</NavigationItem>
         <NavigationItem icon="activity" to="/haptics">Haptics</NavigationItem>
+        <NavigationItem icon="move" to="/touch-gestures">Touch Gestures</NavigationItem>
     </div>
 </template>
 
