@@ -19,9 +19,6 @@
             isHomeView() {
                 return this.$route.path === '/'
             }
-        },
-        mounted() {
-            console.log(caches.cl)
         }
     }
 </script>

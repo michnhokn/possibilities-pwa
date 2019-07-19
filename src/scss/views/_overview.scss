@@ -1,4 +1,23 @@
 main.overview {
+
+  .overview-items-list {
+    margin-bottom: 20px;
+  }
+
+  .name {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    opacity: .5;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
   .overview-item {
     width: 100%;
     border: 1px solid $whiteColor;
@@ -11,6 +30,8 @@ main.overview {
     align-items: center;
     flex-direction: row;
     margin-bottom: 10px;
+    color: $blackColor;
+    text-decoration: none;
 
     &:hover {
       background: rgba($primaryColor, .15);
@@ -25,6 +46,22 @@ main.overview {
       &.true {
         color: green
       }
+
+      &.external {
+        color: $blackColor;
+        opacity: .7;
+        width: 16px;
+        height: 16px;
+        margin-left: 10px;
+      }
     }
+  }
+
+  > a {
+    font-size: .85rem;
+    color: $blackColor;
+    margin-bottom: 10px;
+    line-height: 2;
+    opacity: .6;
   }
 }

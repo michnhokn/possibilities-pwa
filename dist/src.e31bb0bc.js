@@ -9383,9 +9383,6 @@ var _default = {
     isHomeView: function isHomeView() {
       return this.$route.path === '/';
     }
-  },
-  mounted: function mounted() {
-    console.log(caches.cl);
   }
 };
 exports.default = _default;
@@ -12523,7 +12520,207 @@ render._withStripped = true
         
       }
     })();
-},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/OverviewItem.vue":[function(require,module,exports) {
+},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"data/possibilities.json":[function(require,module,exports) {
+module.exports = [{
+  "name": "Camera & Microphone",
+  "possibilities": [{
+    "name": "Audio & Video Capture",
+    "service": "getUserMedia",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia"
+  }, {
+    "name": "Advanced Camera Controls",
+    "service": "ImageCapture",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/ImageCapture"
+  }, {
+    "name": "Recording Media",
+    "service": "MediaRecorder",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder"
+  }, {
+    "name": "Real-Time Communication",
+    "service": "RTCPeerConnection",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection"
+  }]
+}, {
+  "name": "Native Behaviors",
+  "possibilities": [{
+    "name": "Local Notifications",
+    "service": "Notification",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Notification"
+  }, {
+    "name": "Push Messages",
+    "service": "PushManager",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/PushManager"
+  }, {
+    "name": "Home Screen Installation",
+    "service": "BeforeInstallPromptEvent",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/BeforeInstallPromptEvent"
+  }, {
+    "name": "Foreground Detection",
+    "service": "visibilityState",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState"
+  }, {
+    "name": "Permissions",
+    "service": "permissions",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/permissions"
+  }]
+}, {
+  "name": "Seamless Experience",
+  "possibilities": [{
+    "name": "Offline Mode",
+    "service": "serviceWorker",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/serviceWorker"
+  }, {
+    "name": "Background Sync",
+    "service": "SyncManager",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/SyncManager"
+  }, {
+    "name": "Inter-App Communication",
+    "service": "share",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share"
+  }, {
+    "name": "Payments",
+    "service": "PaymentRequest",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest"
+  }, {
+    "name": "Credentials",
+    "service": "credentials",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/credentials"
+  }]
+}, {
+  "name": "Operating System",
+  "possibilities": [{
+    "name": "Offline Storage",
+    "service": "localStorage",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
+  }, {
+    "name": "File Access",
+    "service": "File",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/File"
+  }, {
+    "name": "Contacts",
+    "service": "contacts",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Contacts_API"
+  }, {
+    "name": "SMS/MMS",
+    "service": "messaging",
+    "url": "https://developer.mozilla.org/en-US/docs/Archive/B2G_OS/API/Mobile_Messaging_API"
+  }, {
+    "name": "Storage Quotas",
+    "service": "storage.estimate",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/StorageEstimate"
+  }, {
+    "name": "Task Scheduling",
+    "service": "alarms",
+    "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/alarms"
+  }]
+}, {
+  "name": "Location & Position",
+  "possibilities": [{
+    "name": "Geolocation",
+    "service": "geolocation",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Geolocation"
+  }, {
+    "name": "Geofencing",
+    "service": "GeofenceManager"
+  }, {
+    "name": "Device Position",
+    "service": "DeviceOrientationEvent",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent"
+  }, {
+    "name": "Device Motion",
+    "service": "DeviceMotionEvent",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent"
+  }, {
+    "name": "Proximity Sensors",
+    "service": "ondeviceproximity",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Proximity_Events"
+  }]
+}, {
+  "name": "Surroundings",
+  "possibilities": [{
+    "name": "Bluetooth",
+    "service": "bluetooth",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth"
+  }, {
+    "name": "USB",
+    "service": "usb",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/USB"
+  }, {
+    "name": "Near Field Communication (NFC)",
+    "service": "nfc",
+    "url": "https://developer.mozilla.org/en-US/docs/Archive/B2G_OS/API/NFC_API"
+  }, {
+    "name": "Ambient Light",
+    "service": "ondevicelight",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Ambient_Light_Events"
+  }]
+}, {
+  "name": "Device Features",
+  "possibilities": [{
+    "name": "Network Type & Speed",
+    "service": "connection",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API"
+  }, {
+    "name": "Online State",
+    "service": "onLine",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine"
+  }, {
+    "name": "Vibration",
+    "service": "vibrate",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate"
+  }, {
+    "name": "Battery Status",
+    "service": "getBattery",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API"
+  }, {
+    "name": "Device Memory",
+    "service": "deviceMemory",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/deviceMemory"
+  }]
+}, {
+  "name": "Input",
+  "possibilities": [{
+    "name": "Touch Gestures",
+    "service": "ontouchstart",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Touch_events"
+  }, {
+    "name": "Speech Recognition",
+    "service": "webkitSpeechRecognition",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API"
+  }, {
+    "name": "Clipboard (Copy & Paste)",
+    "service": "clipboard",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Clipboard"
+  }, {
+    "name": "Pointing Device Adaptation",
+    "service": "matchMedia('(pointer: none), (pointer: coarse), (pointer: fine)').matches",
+    "url": "https://dev.opera.com/articles/media-features/"
+  }]
+}, {
+  "name": "Screen & Output",
+  "possibilities": [{
+    "name": "Virtual & Augmented Reality",
+    "service": "getVRDisplays",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getVRDisplays"
+  }, {
+    "name": "Fullscreen",
+    "service": "fullscreenEnabled",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API"
+  }, {
+    "name": "Screen Orientation & Lock",
+    "service": "orientation",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Screen/orientation"
+  }, {
+    "name": "Wake Lock",
+    "service": "getWakeLock",
+    "url": "https://developer.mozilla.org/en-US/docs/Archive/B2G_OS/API/Wake_Lock_API"
+  }, {
+    "name": "Presentation Features",
+    "service": "presentation",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Presentation_API"
+  }]
+}];
+},{}],"components/OverviewItem.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12537,24 +12734,30 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
   name: "OverviewItem",
   props: {
     serviceName: {
       type: String,
       required: true
+    },
+    url: {
+      type: String,
+      required: false,
+      default: null
     }
   },
   computed: {
     iconName: function iconName() {
-      if (this.serviceName in navigator || this.serviceName in window) {
+      if (this.serviceName in navigator || this.serviceName in window || this.serviceName in document) {
         return 'check-circle';
       }
 
       return 'x-circle';
     },
     inNavigator: function inNavigator() {
-      return this.serviceName in navigator || this.serviceName in window;
+      return this.serviceName in navigator || this.serviceName in window || this.serviceName in document;
     }
   }
 };
@@ -12572,15 +12775,25 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { staticClass: "overview-item" },
+    "a",
+    {
+      staticClass: "overview-item",
+      attrs: { href: _vm.url, target: "_blank" }
+    },
     [
       _c("feather-icon", {
         class: { true: _vm.inNavigator },
         attrs: { name: _vm.iconName }
       }),
       _vm._v(" "),
-      _vm._t("default")
+      _vm._t("default"),
+      _vm._v(" "),
+      _vm.url
+        ? _c("feather-icon", {
+            staticClass: "external",
+            attrs: { name: "external-link" }
+          })
+        : _vm._e()
     ],
     2
   )
@@ -12614,7 +12827,7 @@ render._withStripped = true
         
       }
     })();
-},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"views/Overview.vue":[function(require,module,exports) {
+},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/OverviewItemsList.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12637,10 +12850,158 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+var _default = {
+  name: "OverviewItemsList",
+  components: {
+    OverviewItem: _OverviewItem.default
+  },
+  props: {
+    category: {
+      type: Object,
+      required: true
+    },
+    showItems: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
+  data: function data() {
+    return {
+      show: false
+    };
+  },
+  mounted: function mounted() {
+    this.show = this.showItems;
+  }
+};
+exports.default = _default;
+        var $7a4b94 = exports.default || module.exports;
+      
+      if (typeof $7a4b94 === 'function') {
+        $7a4b94 = $7a4b94.options;
+      }
+    
+        /* template */
+        Object.assign($7a4b94, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "overview-items-list" }, [
+    _c(
+      "div",
+      {
+        staticClass: "name",
+        on: {
+          click: function($event) {
+            _vm.show = !_vm.show
+          }
+        }
+      },
+      [
+        _c("span", [_vm._v(_vm._s(_vm.category.name))]),
+        _vm._v(" "),
+        _c("feather-icon", {
+          attrs: { name: _vm.show ? "chevron-up" : "chevron-down" }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.show,
+            expression: "show"
+          }
+        ],
+        staticClass: "overview-items"
+      },
+      _vm._l(_vm.category.possibilities, function(possibility) {
+        return _c(
+          "OverviewItem",
+          {
+            attrs: { "service-name": possibility.service, url: possibility.url }
+          },
+          [_vm._v("\n            " + _vm._s(possibility.name) + "\n        ")]
+        )
+      }),
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$7a4b94', $7a4b94);
+          } else {
+            api.reload('$7a4b94', $7a4b94);
+          }
+        }
+
+        
+      }
+    })();
+},{"../components/OverviewItem":"components/OverviewItem.vue","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"views/Overview.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _possibilities = _interopRequireDefault(require("../data/possibilities"));
+
+var _OverviewItemsList = _interopRequireDefault(require("../components/OverviewItemsList"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   name: "Overview",
   components: {
-    OverviewItem: _OverviewItem.default
+    OverviewItemsList: _OverviewItemsList.default
+  },
+  computed: {
+    categories: function categories() {
+      return _possibilities.default;
+    }
   }
 };
 exports.default = _default;
@@ -12660,31 +13021,21 @@ exports.default = _default;
     "main",
     { staticClass: "overview" },
     [
-      _c("OverviewItem", { attrs: { "service-name": "bluetooth" } }, [
-        _vm._v("Bluetooth")
-      ]),
+      _vm._l(_vm.categories, function(category) {
+        return [_c("OverviewItemsList", { attrs: { category: category } })]
+      }),
       _vm._v(" "),
-      _c("OverviewItem", { attrs: { "service-name": "nfc" } }, [
-        _vm._v("Near Field Communication (NFC)")
-      ]),
+      _c(
+        "a",
+        { attrs: { href: "https://developer.mozilla.org/en-US/docs/Web/API" } },
+        [_vm._v("https://developer.mozilla.org/en-US/docs/Web/API")]
+      ),
       _vm._v(" "),
-      _c("OverviewItem", { attrs: { "service-name": "ondevicelight" } }, [
-        _vm._v("Ambient Light")
-      ]),
-      _vm._v(" "),
-      _c("OverviewItem", { attrs: { "service-name": "ontouchstart" } }, [
-        _vm._v("Touch Gestures")
-      ]),
-      _vm._v(" "),
-      _c("OverviewItem", { attrs: { "service-name": "getWakeLock" } }, [
-        _vm._v("Wake Lock")
-      ]),
-      _vm._v(" "),
-      _c("OverviewItem", { attrs: { "service-name": "caches" } }, [
-        _vm._v("Cache API")
+      _c("a", { attrs: { href: "https://whatwebcando.today/" } }, [
+        _vm._v("https://whatwebcando.today/")
       ])
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -12716,7 +13067,7 @@ render._withStripped = true
         
       }
     })();
-},{"../components/OverviewItem":"components/OverviewItem.vue","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"router.js":[function(require,module,exports) {
+},{"../data/possibilities":"data/possibilities.json","../components/OverviewItemsList":"components/OverviewItemsList.vue","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"router.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16578,7 +16929,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57992" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55630" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

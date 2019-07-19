@@ -1,0 +1,261 @@
+[
+  {
+    "name": "Camera & Microphone",
+    "possibilities": [
+      {
+        "name": "Audio & Video Capture",
+        "service": "getUserMedia",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia"
+      },
+      {
+        "name": "Advanced Camera Controls",
+        "service": "ImageCapture",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/ImageCapture"
+      },
+      {
+        "name": "Recording Media",
+        "service": "MediaRecorder",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder"
+      },
+      {
+        "name": "Real-Time Communication",
+        "service": "RTCPeerConnection",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection"
+      }
+    ]
+  },
+  {
+    "name": "Native Behaviors",
+    "possibilities": [
+      {
+        "name": "Local Notifications",
+        "service": "Notification",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Notification"
+      },
+      {
+        "name": "Push Messages",
+        "service": "PushManager",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/PushManager"
+      },
+      {
+        "name": "Home Screen Installation",
+        "service": "BeforeInstallPromptEvent",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/BeforeInstallPromptEvent"
+      },
+      {
+        "name": "Foreground Detection",
+        "service": "visibilityState",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState"
+      },
+      {
+        "name": "Permissions",
+        "service": "permissions",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/permissions"
+      }
+    ]
+  },
+  {
+    "name": "Seamless Experience",
+    "possibilities": [
+      {
+        "name": "Offline Mode",
+        "service": "serviceWorker",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/serviceWorker"
+      },
+      {
+        "name": "Background Sync",
+        "service": "SyncManager",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/SyncManager"
+      },
+      {
+        "name": "Inter-App Communication",
+        "service": "share",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share"
+      },
+      {
+        "name": "Payments",
+        "service": "PaymentRequest",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest"
+      },
+      {
+        "name": "Credentials",
+        "service": "credentials",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/credentials"
+      }
+    ]
+  },
+  {
+    "name": "Operating System",
+    "possibilities": [
+      {
+        "name": "Offline Storage",
+        "service": "localStorage",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
+      },
+      {
+        "name": "File Access",
+        "service": "File",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/File"
+      },
+      {
+        "name": "Contacts",
+        "service": "contacts",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Contacts_API"
+      },
+      {
+        "name": "SMS/MMS",
+        "service": "messaging",
+        "url": "https://developer.mozilla.org/en-US/docs/Archive/B2G_OS/API/Mobile_Messaging_API"
+      },
+      {
+        "name": "Storage Quotas",
+        "service": "storage.estimate",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/StorageEstimate"
+      },
+      {
+        "name": "Task Scheduling",
+        "service": "alarms",
+        "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/alarms"
+      }
+    ]
+  },
+  {
+    "name": "Location & Position",
+    "possibilities": [
+      {
+        "name": "Geolocation",
+        "service": "geolocation",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Geolocation"
+      },
+      {
+        "name": "Geofencing",
+        "service": "GeofenceManager"
+      },
+      {
+        "name": "Device Position",
+        "service": "DeviceOrientationEvent",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent"
+      },
+      {
+        "name": "Device Motion",
+        "service": "DeviceMotionEvent",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent"
+      },
+      {
+        "name": "Proximity Sensors",
+        "service": "ondeviceproximity",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Proximity_Events"
+      }
+    ]
+  },
+  {
+    "name": "Surroundings",
+    "possibilities": [
+      {
+        "name": "Bluetooth",
+        "service": "bluetooth",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth"
+      },
+      {
+        "name": "USB",
+        "service": "usb",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/USB"
+      },
+      {
+        "name": "Near Field Communication (NFC)",
+        "service": "nfc",
+        "url": "https://developer.mozilla.org/en-US/docs/Archive/B2G_OS/API/NFC_API"
+      },
+      {
+        "name": "Ambient Light",
+        "service": "ondevicelight",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Ambient_Light_Events"
+      }
+    ]
+  },
+  {
+    "name": "Device Features",
+    "possibilities": [
+      {
+        "name": "Network Type & Speed",
+        "service": "connection",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API"
+      },
+      {
+        "name": "Online State",
+        "service": "onLine",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine"
+      },
+      {
+        "name": "Vibration",
+        "service": "vibrate",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate"
+      },
+      {
+        "name": "Battery Status",
+        "service": "getBattery",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API"
+      },
+      {
+        "name": "Device Memory",
+        "service": "deviceMemory",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/deviceMemory"
+      }
+    ]
+  },
+  {
+    "name": "Input",
+    "possibilities": [
+      {
+        "name": "Touch Gestures",
+        "service": "ontouchstart",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Touch_events"
+      },
+      {
+        "name": "Speech Recognition",
+        "service": "webkitSpeechRecognition",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API"
+      },
+      {
+        "name": "Clipboard (Copy & Paste)",
+        "service": "clipboard",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Clipboard"
+      },
+      {
+        "name": "Pointing Device Adaptation",
+        "service": "matchMedia('(pointer: none), (pointer: coarse), (pointer: fine)').matches",
+        "url": "https://dev.opera.com/articles/media-features/"
+      }
+    ]
+  },
+  {
+    "name": "Screen & Output",
+    "possibilities": [
+      {
+        "name": "Virtual & Augmented Reality",
+        "service": "getVRDisplays",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getVRDisplays"
+      },
+      {
+        "name": "Fullscreen",
+        "service": "fullscreenEnabled",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API"
+      },
+      {
+        "name": "Screen Orientation & Lock",
+        "service": "orientation",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Screen/orientation"
+      },
+      {
+        "name": "Wake Lock",
+        "service": "getWakeLock",
+        "url": "https://developer.mozilla.org/en-US/docs/Archive/B2G_OS/API/Wake_Lock_API"
+      },
+      {
+        "name": "Presentation Features",
+        "service": "presentation",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Presentation_API"
+      }
+    ]
+  }
+]

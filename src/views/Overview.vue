@@ -1,19 +1,25 @@
 <template>
     <main class="overview">
-        <OverviewItem service-name="bluetooth">Bluetooth</OverviewItem>
-        <OverviewItem service-name="nfc">Near Field Communication (NFC)</OverviewItem>
-        <OverviewItem service-name="ondevicelight">Ambient Light</OverviewItem>
-        <OverviewItem service-name="ontouchstart">Touch Gestures</OverviewItem>
-        <OverviewItem service-name="getWakeLock">Wake Lock</OverviewItem>
-        <OverviewItem service-name="caches">Cache API</OverviewItem>
+        <template v-for="category in categories">
+            <OverviewItemsList :category="category"></OverviewItemsList>
+        </template>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API">https://developer.mozilla.org/en-US/docs/Web/API</a>
+        <a href="https://whatwebcando.today/">https://whatwebcando.today/</a>
     </main>
 </template>
 
 <script>
-    import OverviewItem from "../components/OverviewItem";
+
+    import categories from "../data/possibilities";
+    import OverviewItemsList from "../components/OverviewItemsList";
 
     export default {
         name: "Overview",
-        components: {OverviewItem},
+        components: {OverviewItemsList},
+        computed: {
+            categories() {
+                return categories;
+            }
+        }
     }
 </script>
