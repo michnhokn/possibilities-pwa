@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "rm -rf dist/*",
-    "dev": "parcel src/index.html --public-url / --port=1237",
-    "watch": "parcel watch src/index.html --public-url /",
-    "build": "parcel build src/index.html --no-source-maps --public-url ./"
+    "dev": "parcel src/index.html --port=1237",
+    "watch": "parcel watch src/index.html",
+    "build": "parcel build src/index.html --no-source-maps"
   },
   "repository": {
     "type": "git",

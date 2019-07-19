@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import feather from 'feather-icons/dist/feather-sprite.svg';
+    import feather from './../../node_modules/feather-icons/dist/feather-sprite.svg';
 
     export default {
         name: "FeatherIcon",
