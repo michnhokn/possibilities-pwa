@@ -1,10 +1,10 @@
 <template>
-    <main class="push-notifications">
+    <main class="geolocation">
     </main>
 </template>
 
 <script>
     export default {
-        name: "PushNotifications"
+        name: "Geolocation"
     }
 </script>

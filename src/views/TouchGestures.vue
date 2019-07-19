@@ -1,10 +1,10 @@
 <template>
-    <main class="push-notifications">
+    <main class="touch-gestures">
     </main>
 </template>
 
 <script>
     export default {
-        name: "PushNotifications"
+        name: "TouchGestures"
     }
 </script>

@@ -4,7 +4,7 @@
             <router-link to="/" tag="span">{{ title }}</router-link>
             {{ getRouteName() }}
         </div>
-        <p class="header__version">0.1.11</p>
+        <p class="header__version">0.1.12</p>
     </header>
 </template>
 

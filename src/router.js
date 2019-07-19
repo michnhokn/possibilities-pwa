@@ -5,6 +5,8 @@ import Camera from './views/Camera'
 import PushNotifications from "./views/PushNotifications";
 import Overview from "./views/Overview";
 import System from "./views/System";
+import Geolocation from "./views/Geolocation";
+import TouchGestures from "./views/TouchGestures";
 
 Vue.use(VueRouter);
 
@@ -33,6 +35,16 @@ const routes = [
         path: '/system',
         name: 'System',
         component: System
+    },
+    {
+        path: '/geolocation',
+        name: 'Geolocation',
+        component: Geolocation
+    },
+    {
+        path: '/touch-gestures',
+        name: 'Touch Gestures',
+        component: TouchGestures
     }
 ];
 

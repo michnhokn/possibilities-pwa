@@ -17,20 +17,6 @@
             <p v-if="battery.charging"><span>Battery is charging:</span>{{ battery.charging }}</p>
             <p v-if="battery.chargingTime"><span>Battery charging time:</span>{{ battery.chargingTime }} s</p>
         </template>
-        <h3>Location & Position</h3>
-        <p v-if="hidden"><span>Visible:</span>{{ hidden }}</p>
-        <p v-if="orientation"><span>Orientation:</span>{{ orientation }}</p>
-        <template v-if="longitude && latitude">
-            <u><span>Geolocation</span></u>
-            <p><span>Longitude:</span>{{ longitude }}</p>
-            <p><span>Latitude:</span>{{ latitude}}</p>
-        </template>
-        <template v-if="tiltLR && tiltFB && dir">
-            <u><span>Device Position</span></u>
-            <p><span>Tilt Left/Right:</span>{{ tiltLR }}</p>
-            <p><span>Tilt Front/Back:</span>{{ tiltFB }}</p>
-            <p><span>Direction:</span>{{ dir }}</p>
-        </template>
         <template v-if="permissions">
             <h3>Permissions</h3>
             <p><span>Geolocation:</span>{{ permissionList.geolocation }}</p>
@@ -44,6 +30,20 @@
             <p><span>Accelerometer:</span>{{ permissionList.accelerometer }}</p>
             <p><span>Gyroscope:</span>{{ permissionList.gyroscope }}</p>
             <p><span>Magnetometer:</span>{{ permissionList.magnetometer }}</p>
+        </template>
+        <h3>Location & Position</h3>
+        <p v-if="hidden"><span>Visible:</span>{{ hidden }}</p>
+        <p v-if="orientation"><span>Orientation:</span>{{ orientation }}</p>
+        <template v-if="longitude && latitude">
+            <u><span>Geolocation</span></u>
+            <p><span>Longitude:</span>{{ longitude }}</p>
+            <p><span>Latitude:</span>{{ latitude}}</p>
+        </template>
+        <template v-if="tiltLR && tiltFB && dir">
+            <u><span>Device Position</span></u>
+            <p><span>Tilt Left/Right:</span>{{ tiltLR }}</p>
+            <p><span>Tilt Front/Back:</span>{{ tiltFB }}</p>
+            <p><span>Direction:</span>{{ dir }}</p>
         </template>
     </main>
 </template>

@@ -5,7 +5,7 @@
         <NavigationItem icon="activity" to="/system">System Information</NavigationItem>
         <NavigationItem icon="camera" to="/camera">Camera</NavigationItem>
         <NavigationItem icon="smartphone" to="/push-notifications">Push Notifications</NavigationItem>
-        <NavigationItem icon="map-pin" to="/geo-location">Geo Location</NavigationItem>
+        <NavigationItem icon="map-pin" to="/geolocation">Geo Location</NavigationItem>
         <NavigationItem icon="move" to="/touch-gestures">Touch Gestures</NavigationItem>
     </div>
 </template>

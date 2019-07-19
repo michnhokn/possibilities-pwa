@@ -8982,11 +8982,9 @@ exports.default = _default;
         [_vm._v("Push Notifications")]
       ),
       _vm._v(" "),
-      _c(
-        "NavigationItem",
-        { attrs: { icon: "map-pin", to: "/geo-location" } },
-        [_vm._v("Geo Location")]
-      ),
+      _c("NavigationItem", { attrs: { icon: "map-pin", to: "/geolocation" } }, [
+        _vm._v("Geo Location")
+      ]),
       _vm._v(" "),
       _c("NavigationItem", { attrs: { icon: "move", to: "/touch-gestures" } }, [
         _vm._v("Touch Gestures")
@@ -9170,7 +9168,7 @@ exports.default = _default;
       1
     ),
     _vm._v(" "),
-    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.11")])
+    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.12")])
   ])
 }
 var staticRenderFns = []
@@ -20454,14 +20452,8 @@ exports.default = void 0;
 //
 //
 //
-//
 var _default = {
-  name: "PushNotifications",
-  data: function data() {
-    return {
-      name: 'Camera'
-    };
-  }
+  name: "PushNotifications"
 };
 exports.default = _default;
         var $6c7f72 = exports.default || module.exports;
@@ -20476,16 +20468,9 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("main", { staticClass: "push-notifications" })
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("main", [_c("p", [_vm._v("Push Notifications")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
           return {
@@ -21366,59 +21351,6 @@ exports.default = _default;
           ]
         : _vm._e(),
       _vm._v(" "),
-      _c("h3", [_vm._v("Location & Position")]),
-      _vm._v(" "),
-      _vm.hidden
-        ? _c("p", [
-            _c("span", [_vm._v("Visible:")]),
-            _vm._v(_vm._s(_vm.hidden))
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.orientation
-        ? _c("p", [
-            _c("span", [_vm._v("Orientation:")]),
-            _vm._v(_vm._s(_vm.orientation))
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.longitude && _vm.latitude
-        ? [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("p", [
-              _c("span", [_vm._v("Longitude:")]),
-              _vm._v(_vm._s(_vm.longitude))
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _c("span", [_vm._v("Latitude:")]),
-              _vm._v(_vm._s(_vm.latitude))
-            ])
-          ]
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.tiltLR && _vm.tiltFB && _vm.dir
-        ? [
-            _vm._m(1),
-            _vm._v(" "),
-            _c("p", [
-              _c("span", [_vm._v("Tilt Left/Right:")]),
-              _vm._v(_vm._s(_vm.tiltLR))
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _c("span", [_vm._v("Tilt Front/Back:")]),
-              _vm._v(_vm._s(_vm.tiltFB))
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _c("span", [_vm._v("Direction:")]),
-              _vm._v(_vm._s(_vm.dir))
-            ])
-          ]
-        : _vm._e(),
-      _vm._v(" "),
       _vm.permissions
         ? [
             _c("h3", [_vm._v("Permissions")]),
@@ -21478,6 +21410,59 @@ exports.default = _default;
               _vm._v(_vm._s(_vm.permissionList.magnetometer))
             ])
           ]
+        : _vm._e(),
+      _vm._v(" "),
+      _c("h3", [_vm._v("Location & Position")]),
+      _vm._v(" "),
+      _vm.hidden
+        ? _c("p", [
+            _c("span", [_vm._v("Visible:")]),
+            _vm._v(_vm._s(_vm.hidden))
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.orientation
+        ? _c("p", [
+            _c("span", [_vm._v("Orientation:")]),
+            _vm._v(_vm._s(_vm.orientation))
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.longitude && _vm.latitude
+        ? [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("p", [
+              _c("span", [_vm._v("Longitude:")]),
+              _vm._v(_vm._s(_vm.longitude))
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("span", [_vm._v("Latitude:")]),
+              _vm._v(_vm._s(_vm.latitude))
+            ])
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.tiltLR && _vm.tiltFB && _vm.dir
+        ? [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("p", [
+              _c("span", [_vm._v("Tilt Left/Right:")]),
+              _vm._v(_vm._s(_vm.tiltLR))
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("span", [_vm._v("Tilt Front/Back:")]),
+              _vm._v(_vm._s(_vm.tiltFB))
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("span", [_vm._v("Direction:")]),
+              _vm._v(_vm._s(_vm.dir))
+            ])
+          ]
         : _vm._e()
     ],
     2
@@ -21525,6 +21510,124 @@ render._withStripped = true
         
       }
     })();
+},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"views/Geolocation.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+var _default = {
+  name: "Geolocation"
+};
+exports.default = _default;
+        var $a878e0 = exports.default || module.exports;
+      
+      if (typeof $a878e0 === 'function') {
+        $a878e0 = $a878e0.options;
+      }
+    
+        /* template */
+        Object.assign($a878e0, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("main", { staticClass: "geolocation" })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$a878e0', $a878e0);
+          } else {
+            api.reload('$a878e0', $a878e0);
+          }
+        }
+
+        
+      }
+    })();
+},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"views/TouchGestures.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+var _default = {
+  name: "TouchGestures"
+};
+exports.default = _default;
+        var $2fa291 = exports.default || module.exports;
+      
+      if (typeof $2fa291 === 'function') {
+        $2fa291 = $2fa291.options;
+      }
+    
+        /* template */
+        Object.assign($2fa291, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("main", { staticClass: "touch-gestures" })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$2fa291', $2fa291);
+          } else {
+            api.reload('$2fa291', $2fa291);
+          }
+        }
+
+        
+      }
+    })();
 },{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"router.js":[function(require,module,exports) {
 "use strict";
 
@@ -21546,6 +21649,10 @@ var _PushNotifications = _interopRequireDefault(require("./views/PushNotificatio
 var _Overview = _interopRequireDefault(require("./views/Overview"));
 
 var _System = _interopRequireDefault(require("./views/System"));
+
+var _Geolocation = _interopRequireDefault(require("./views/Geolocation"));
+
+var _TouchGestures = _interopRequireDefault(require("./views/TouchGestures"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21571,6 +21678,14 @@ var routes = [{
   path: '/system',
   name: 'System',
   component: _System.default
+}, {
+  path: '/geolocation',
+  name: 'Geolocation',
+  component: _Geolocation.default
+}, {
+  path: '/touch-gestures',
+  name: 'Touch Gestures',
+  component: _TouchGestures.default
 }];
 
 var _default = new _vueRouter.default({
@@ -21578,7 +21693,7 @@ var _default = new _vueRouter.default({
 });
 
 exports.default = _default;
-},{"vue":"../node_modules/vue/dist/vue.runtime.esm.js","vue-router":"../node_modules/vue-router/dist/vue-router.esm.js","./views/Home":"views/Home.vue","./views/Camera":"views/Camera.vue","./views/PushNotifications":"views/PushNotifications.vue","./views/Overview":"views/Overview.vue","./views/System":"views/System.vue"}],"../node_modules/vuex/dist/vuex.esm.js":[function(require,module,exports) {
+},{"vue":"../node_modules/vue/dist/vue.runtime.esm.js","vue-router":"../node_modules/vue-router/dist/vue-router.esm.js","./views/Home":"views/Home.vue","./views/Camera":"views/Camera.vue","./views/PushNotifications":"views/PushNotifications.vue","./views/Overview":"views/Overview.vue","./views/System":"views/System.vue","./views/Geolocation":"views/Geolocation.vue","./views/TouchGestures":"views/TouchGestures.vue"}],"../node_modules/vuex/dist/vuex.esm.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
