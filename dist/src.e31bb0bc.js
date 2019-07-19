@@ -8968,6 +8968,10 @@ exports.default = _default;
         _vm._v("Feature Overview")
       ]),
       _vm._v(" "),
+      _c("NavigationItem", { attrs: { icon: "activity", to: "/system" } }, [
+        _vm._v("System Information")
+      ]),
+      _vm._v(" "),
       _c("NavigationItem", { attrs: { icon: "camera", to: "/camera" } }, [
         _vm._v("Camera")
       ]),
@@ -8983,10 +8987,6 @@ exports.default = _default;
         { attrs: { icon: "map-pin", to: "/geo-location" } },
         [_vm._v("Geo Location")]
       ),
-      _vm._v(" "),
-      _c("NavigationItem", { attrs: { icon: "activity", to: "/haptics" } }, [
-        _vm._v("Haptics")
-      ]),
       _vm._v(" "),
       _c("NavigationItem", { attrs: { icon: "move", to: "/touch-gestures" } }, [
         _vm._v("Touch Gestures")
@@ -9170,7 +9170,7 @@ exports.default = _default;
       1
     ),
     _vm._v(" "),
-    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.8")])
+    _c("p", { staticClass: "header__version" }, [_vm._v("0.1.10")])
   ])
 }
 var staticRenderFns = []
@@ -13067,7 +13067,308 @@ render._withStripped = true
         
       }
     })();
-},{"../data/possibilities":"data/possibilities.json","../components/OverviewItemsList":"components/OverviewItemsList.vue","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"router.js":[function(require,module,exports) {
+},{"../data/possibilities":"data/possibilities.json","../components/OverviewItemsList":"components/OverviewItemsList.vue","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"views/System.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "System",
+  data: function data() {
+    return {
+      connection: navigator.connection || navigator.mozConnection || navigator.webkitConnection || navigator.msConnection,
+      online: navigator.onLine,
+      deviceMemory: navigator.deviceMemory || 'unknown',
+      battery: null,
+      latitude: 0.0,
+      longitude: 0.0,
+      tiltLR: 0.0,
+      tiltFB: 0.0,
+      dir: 0.0,
+      hidden: '',
+      orientation: window.screen.orientation.type
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    if ('getBattery' in navigator) {
+      navigator.getBattery().then(function (battery) {
+        return _this.battery = battery;
+      });
+    }
+
+    if ('geolocation' in navigator) {
+      navigator.geolocation.watchPosition(function (position) {
+        _this.latitude = position.coords.latitude;
+        _this.longitude = position.coords.longitude;
+      });
+    }
+
+    if ('DeviceOrientationEvent' in window) {
+      window.addEventListener('deviceorientation', _this.deviceOrientationHandler, false);
+    }
+
+    if ('hidden' in document) {
+      _this.hidden = document['hidden'] ? 'hidden' : 'visible';
+    }
+
+    window.screen.orientation.addEventListener('change', function () {
+      _this.orientation = window.screen.orientation.type;
+    });
+  },
+  methods: {
+    vibrate: function vibrate() {
+      navigator.vibrate(500);
+    },
+    deviceOrientationHandler: function deviceOrientationHandler(eventData) {
+      this.tiltLR = eventData.gamma;
+      this.tiltFB = eventData.beta;
+      this.dir = eventData.alpha;
+    }
+  }
+};
+exports.default = _default;
+        var $555c56 = exports.default || module.exports;
+      
+      if (typeof $555c56 === 'function') {
+        $555c56 = $555c56.options;
+      }
+    
+        /* template */
+        Object.assign($555c56, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "main",
+    { staticClass: "system" },
+    [
+      _c("h3", [_vm._v("Network")]),
+      _vm._v(" "),
+      _vm.connection
+        ? [
+            _vm.connection.effectiveType
+              ? _c("p", [
+                  _c("span", [_vm._v("Network Effective Type:")]),
+                  _vm._v(_vm._s(_vm.connection.effectiveType))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.connection.type
+              ? _c("p", [
+                  _c("span", [_vm._v("Network Type:")]),
+                  _vm._v(_vm._s(_vm.connection.type))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.connection.downlink
+              ? _c("p", [
+                  _c("span", [_vm._v("Downlink:")]),
+                  _vm._v(_vm._s(_vm.connection.downlink) + " mbit/s")
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.connection.downlinkMax
+              ? _c("p", [
+                  _c("span", [_vm._v("Downlink Max:")]),
+                  _vm._v(_vm._s(_vm.connection.downlinkMax) + " mbit/s")
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.online
+              ? _c("p", [
+                  _c("span", [_vm._v("Online:")]),
+                  _vm._v(_vm._s(_vm.online))
+                ])
+              : _vm._e()
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _c("h3", [_vm._v("Device")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "button ta-left", on: { click: _vm.vibrate } }, [
+        _vm._v("Vibrate for 500ms")
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _c("span", [_vm._v("Device Memory:")]),
+        _vm._v(_vm._s(_vm.deviceMemory) + " GB")
+      ]),
+      _vm._v(" "),
+      _vm.battery
+        ? [
+            _vm.battery.level
+              ? _c("p", [
+                  _c("span", [_vm._v("Battery Level:")]),
+                  _vm._v(_vm._s(_vm.battery.level))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.battery.dischargingTime
+              ? _c("p", [
+                  _c("span", [_vm._v("Battery discharging time:")]),
+                  _vm._v(_vm._s(_vm.battery.dischargingTime) + " s")
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.battery.charging
+              ? _c("p", [
+                  _c("span", [_vm._v("Battery is charging:")]),
+                  _vm._v(_vm._s(_vm.battery.charging))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.battery.chargingTime
+              ? _c("p", [
+                  _c("span", [_vm._v("Battery charging time:")]),
+                  _vm._v(_vm._s(_vm.battery.chargingTime) + " s")
+                ])
+              : _vm._e()
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _c("h3", [_vm._v("Location & Position")]),
+      _vm._v(" "),
+      _vm.hidden
+        ? _c("p", [
+            _c("span", [_vm._v("Visible:")]),
+            _vm._v(_vm._s(_vm.hidden))
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.orientation
+        ? _c("p", [
+            _c("span", [_vm._v("Orientation:")]),
+            _vm._v(_vm._s(_vm.orientation))
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.longitude && _vm.latitude
+        ? [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("p", [
+              _c("span", [_vm._v("Longitude:")]),
+              _vm._v(_vm._s(_vm.longitude))
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("span", [_vm._v("Latitude:")]),
+              _vm._v(_vm._s(_vm.latitude))
+            ])
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.tiltLR && _vm.tiltFB && _vm.dir
+        ? [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("p", [
+              _c("span", [_vm._v("Tilt Left/Right:")]),
+              _vm._v(_vm._s(_vm.tiltLR))
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("span", [_vm._v("Tilt Front/Back:")]),
+              _vm._v(_vm._s(_vm.tiltFB))
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("span", [_vm._v("Direction:")]),
+              _vm._v(_vm._s(_vm.dir))
+            ])
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _c("h3", [_vm._v("Permissions")])
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("u", [_c("span", [_vm._v("Geolocation")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("u", [_c("span", [_vm._v("Device Position")])])
+  }
+]
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$555c56', $555c56);
+          } else {
+            api.reload('$555c56', $555c56);
+          }
+        }
+
+        
+      }
+    })();
+},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"router.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13086,6 +13387,8 @@ var _Camera = _interopRequireDefault(require("./views/Camera"));
 var _PushNotifications = _interopRequireDefault(require("./views/PushNotifications"));
 
 var _Overview = _interopRequireDefault(require("./views/Overview"));
+
+var _System = _interopRequireDefault(require("./views/System"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13107,6 +13410,10 @@ var routes = [{
   path: '/overview',
   name: 'Overview',
   component: _Overview.default
+}, {
+  path: '/system',
+  name: 'System',
+  component: _System.default
 }];
 
 var _default = new _vueRouter.default({
@@ -13114,7 +13421,7 @@ var _default = new _vueRouter.default({
 });
 
 exports.default = _default;
-},{"vue":"../node_modules/vue/dist/vue.runtime.esm.js","vue-router":"../node_modules/vue-router/dist/vue-router.esm.js","./views/Home":"views/Home.vue","./views/Camera":"views/Camera.vue","./views/PushNotifications":"views/PushNotifications.vue","./views/Overview":"views/Overview.vue"}],"../node_modules/vuex/dist/vuex.esm.js":[function(require,module,exports) {
+},{"vue":"../node_modules/vue/dist/vue.runtime.esm.js","vue-router":"../node_modules/vue-router/dist/vue-router.esm.js","./views/Home":"views/Home.vue","./views/Camera":"views/Camera.vue","./views/PushNotifications":"views/PushNotifications.vue","./views/Overview":"views/Overview.vue","./views/System":"views/System.vue"}],"../node_modules/vuex/dist/vuex.esm.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 

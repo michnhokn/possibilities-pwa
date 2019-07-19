@@ -4,6 +4,7 @@ import Home from './views/Home'
 import Camera from './views/Camera'
 import PushNotifications from "./views/PushNotifications";
 import Overview from "./views/Overview";
+import System from "./views/System";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
         path: '/overview',
         name: 'Overview',
         component: Overview
+    },
+    {
+        path: '/system',
+        name: 'System',
+        component: System
     }
 ];
 

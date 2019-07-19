@@ -11,7 +11,7 @@ main {
     line-height: 1.5;
   }
 
-  button {
+  button, .button {
     height: 50px;
     padding: 0 20px;
     display: flex;
@@ -25,5 +25,9 @@ main {
     width: 100%;
     background: rgba($primaryColor, .15);
     border: 1px solid $primaryColor;
+
+    &.ta-left {
+      justify-content: flex-start;
+    }
   }
 }

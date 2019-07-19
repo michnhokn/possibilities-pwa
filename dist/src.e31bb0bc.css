@@ -102,7 +102,7 @@ main h1 {
 main p {
   line-height: 1.5;
 }
-main button {
+main button, main .button {
   height: 50px;
   padding: 0 20px;
   display: flex;
@@ -116,6 +116,9 @@ main button {
   width: 100%;
   background: rgba(255, 223, 118, 0.15);
   border: 1px solid #FFDF76;
+}
+main button.ta-left, main .button.ta-left {
+  justify-content: flex-start;
 }
 
 main.overview .overview-items-list {
@@ -173,6 +176,22 @@ main.overview > a {
   margin-bottom: 10px;
   line-height: 2;
   opacity: 0.6;
+}
+
+main.system h3 {
+  margin-bottom: 10px;
+  margin-top: 20px;
+  display: block;
+}
+main.system h3:first-child {
+  margin-top: 0;
+}
+main.system p {
+  line-height: 1.5;
+}
+main.system p span {
+  display: inline-block;
+  width: 200px;
 }
 
 main.camera img {
