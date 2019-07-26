@@ -6,10 +6,16 @@ import store from './store'
 import FeatherIcon from './components/FeatherIcon'
 import Benchmark, {Suite} from 'asyncmark'
 import './registerServiceWorker'
+import {VueHammer} from 'vue2-hammer'
 
+Vue.use(VueHammer);
 Vue.component('feather-icon', FeatherIcon);
 Vue.prototype.$benchmark = Benchmark;
 Vue.prototype.$suite = Suite;
+
+VueHammer.config.swipe = {
+    threshold: 150
+};
 
 new Vue({
     el: '#possibilities-pwa',
