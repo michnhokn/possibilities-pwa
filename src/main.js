@@ -1,13 +1,18 @@
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App'
+import 'babel-polyfill'
 import router from './router'
 import store from './store'
-import './registerServiceWorker'
+import FeatherIcon from './components/FeatherIcon'
+import Benchmark, {Suite} from 'asyncmark'
 
-Vue.config.productionTip = false
+Vue.component('feather-icon', FeatherIcon);
+Vue.prototype.$benchmark = Benchmark;
+Vue.prototype.$suite = Suite;
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+    el: '#possibilities-pwa',
+    router: router,
+    store: store,
+    render: h => h(App),
+});

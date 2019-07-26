@@ -1,23 +1,51 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import VueRouter from 'vue-router'
+import Home from './views/Home'
+import Camera from './views/Camera'
+import PushNotifications from "./views/PushNotifications";
+import Overview from "./views/Overview";
+import System from "./views/System";
+import Geolocation from "./views/Geolocation";
+import TouchGestures from "./views/TouchGestures";
 
-Vue.use(Router)
+Vue.use(VueRouter);
 
-export default new Router({
-  routes: [
+const routes = [
     {
-      path: '/',
-      name: 'home',
-      component: Home
+        path: '/',
+        name: 'Home',
+        component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+        path: '/camera',
+        name: 'Camera',
+        component: Camera
+    },
+    {
+        path: '/push-notifications',
+        name: 'Push Notifications',
+        component: PushNotifications
+    },
+    {
+        path: '/overview',
+        name: 'Overview',
+        component: Overview
+    },
+    {
+        path: '/system',
+        name: 'System',
+        component: System
+    },
+    {
+        path: '/geolocation',
+        name: 'Geolocation',
+        component: Geolocation
+    },
+    {
+        path: '/touch-gestures',
+        name: 'Touch Gestures',
+        component: TouchGestures
     }
-  ]
-})
+];
+
+export default new VueRouter({routes});
