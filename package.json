@@ -1,6 +1,6 @@
 {
   "name": "possibilities-pwa",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -69,7 +69,7 @@
       "themeColor": "#ffdf76",
       "msTileColor": "#ffffff",
       "appleMobileWebAppCapable": "yes",
-      "assetsVersion": "0.1.18",
+      "assetsVersion": "0.1.19",
       "iconPaths": {
         "favicon32": "img/icons/favicon-32x32.png",
         "favicon16": "img/icons/favicon-16x16.png",

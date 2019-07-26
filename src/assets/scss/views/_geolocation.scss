@@ -5,7 +5,7 @@ main.geolocation {
     height: calc(100vh - 50px);
   }
 
-  button {
+  .buttons {
     position: absolute;
     z-index: 1100;
     left: 20px;
@@ -13,5 +13,12 @@ main.geolocation {
     width: calc(100vw - 40px);
     background-color: rgba($primaryColor, .9);
     box-shadow: 0 2px 4px rgba($blackColor, .2);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    button {
+      margin: 0;
+    }
   }
 }
