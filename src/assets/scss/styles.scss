@@ -15,7 +15,7 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-svg {
+svg.feather-icon {
   width: 20px;
   height: 20px;
   fill: none;
@@ -31,3 +31,4 @@ svg {
 @import "views/overview";
 @import "views/system";
 @import "views/camera";
+@import "views/geolocation";

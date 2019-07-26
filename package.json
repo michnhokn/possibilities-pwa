@@ -1,6 +1,6 @@
 {
   "name": "possibilities-pwa",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,6 +12,7 @@
     "babel-polyfill": "^6.26.0",
     "core-js": "^2.6.5",
     "feather-icons": "^4.22.1",
+    "leaflet": "^1.5.1",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
@@ -68,7 +69,7 @@
       "themeColor": "#ffdf76",
       "msTileColor": "#ffffff",
       "appleMobileWebAppCapable": "yes",
-      "assetsVersion": "0.1.17",
+      "assetsVersion": "0.1.18",
       "iconPaths": {
         "favicon32": "img/icons/favicon-32x32.png",
         "favicon16": "img/icons/favicon-16x16.png",

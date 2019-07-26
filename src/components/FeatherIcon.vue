@@ -1,5 +1,5 @@
 <template>
-    <svg>
+    <svg class="feather-icon">
         <use :xlink:href="iconPath"></use>
     </svg>
 </template>
