@@ -5,6 +5,7 @@ import router from './router'
 import store from './store'
 import FeatherIcon from './components/FeatherIcon'
 import Benchmark, {Suite} from 'asyncmark'
+import './registerServiceWorker'
 
 Vue.component('feather-icon', FeatherIcon);
 Vue.prototype.$benchmark = Benchmark;
