@@ -66,8 +66,18 @@
     }
   }
 
+
+  &__info {
+    position: absolute;
+    left: 10px;
+    top: 60px;
+    width: 100%;
+    overflow-x: scroll;
+  }
+
   &__stream {
     width: 100%;
     height: 100%;
+    transform: scale(.5);
   }
 }

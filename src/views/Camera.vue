@@ -1,5 +1,6 @@
 <template>
     <main class="camera">
+        <pre class="camera__info">{{ cameraInfo }}</pre>
         <div class="camera__last" v-if="showLastImage">
             <div @click="closeLastImage">
                 <feather-icon name="x"/>
@@ -36,6 +37,9 @@
         computed: {
             currentFacingMode() {
                 return this.imageCapture.track.getConstraints()['facingMode']
+            },
+            cameraInfo() {
+                return this.imageCapture ? this.imageCapture.track.getSettings() : ''
             }
         },
         mounted() {
