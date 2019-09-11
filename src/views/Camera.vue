@@ -49,8 +49,8 @@
                 _this.currentAspectRatio = _this.$refs['video'].clientWidth / _this.$refs['video'].clientHeight;
                 _this.cameraIsSwitchable = capabilities.facingMode.length > 0;
                 _this.initCamera(
-                    capabilities.height.max * _this.currentAspectRatio,
-                    capabilities.height.max
+                    settings.height * _this.currentAspectRatio,
+                    settings.height
                 )
             });
         },
