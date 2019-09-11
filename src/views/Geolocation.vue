@@ -34,6 +34,7 @@
                 maxZoom: 19,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(_this.map);
+            _this.showCurrentLocation()
         },
         methods: {
             trackLocation() {
@@ -56,6 +57,21 @@
             showWholeTrack() {
                 let _this = this;
                 _this.map.fitBounds(_this.trackingPath.getBounds());
+            },
+            showCurrentLocation() {
+                let _this = this,
+                    userPositionIcon = L.icon({
+                        iconUrl: 'img/icons/icon.png',
+                        iconSize: [38, 95],
+                        iconAnchor: [22, 94],
+                        popupAnchor: [-3, -76],
+                    });
+
+                navigator.geolocation.getCurrentPosition((position => {
+                    L.marker([position.coords.latitude, position.coords.longitude], {
+                        icon: userPositionIcon
+                    }).addTo(_this.map);
+                }))
             },
             addCurrentGeolocation() {
                 let _this = this;
