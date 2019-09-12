@@ -53,7 +53,7 @@
                     }
                 }
             },
-            setupCamera(facingMode = 'environment') {
+            setupCamera(facingMode = 'user') {
                 let _this = this;
                 _this.getVideoCapabilities(facingMode).then(track => {
                     let settings = track.getSettings();
@@ -65,7 +65,7 @@
                     )
                 });
             },
-            getVideoCapabilities(facingMode = 'environment') {
+            getVideoCapabilities(facingMode = 'user') {
                 return new Promise((resolve, reject) => {
                         navigator.mediaDevices.getUserMedia({video: {facingMode: facingMode}}).then(mediaStream => {
                             let imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
@@ -74,7 +74,7 @@
                     }
                 );
             },
-            initCamera(width, height, facingMode = 'environment') {
+            initCamera(width, height, facingMode = 'user') {
                 let _this = this;
                 return new Promise((resolve, reject) => {
                         navigator.mediaDevices.getUserMedia({
@@ -87,9 +87,7 @@
                                     min: height,
                                     max: height
                                 },
-                                facingMode: {
-                                    exact: facingMode
-                                },
+                                facingMode: facingMode,
                                 frameRate: {
                                     ideal: 60
                                 }
