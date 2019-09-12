@@ -25,6 +25,10 @@ main {
     background: rgba($primaryColor, .15);
     border: 1px solid $primaryColor;
 
+    &--left {
+      justify-content: flex-start;
+    }
+
     &.ta-left {
       justify-content: flex-start;
     }

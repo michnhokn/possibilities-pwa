@@ -1,50 +1,33 @@
 <template>
     <main class="system">
-        <h3>Network</h3>
-        <template v-if="connection">
-            <p v-if="connection.effectiveType"><span>Network Effective Type:</span>{{ connection.effectiveType }}</p>
-            <p v-if="connection.type"><span>Network Type:</span>{{ connection.type }}</p>
-            <p v-if="connection.downlink"><span>Downlink:</span>{{ connection.downlink }} mbit/s</p>
-            <p v-if="connection.downlinkMax"><span>Downlink Max:</span>{{ connection.downlinkMax }} mbit/s</p>
-            <p v-if="online"><span>Online:</span>{{ online }}</p>
-        </template>
-        <h3>Device</h3>
-        <p @click="vibrate" class="button ta-left">Vibrate for 500ms</p>
-        <p><span>Device Memory:</span>{{ deviceMemory }} GB</p>
-        <template v-if="battery">
-            <p v-if="battery.level"><span>Battery Level:</span>{{ battery.level * 100 }} %</p>
-            <p v-if="battery.dischargingTime"><span>Battery discharging time:</span>{{ battery.dischargingTime }} s</p>
-            <p v-if="battery.charging"><span>Battery is charging:</span>{{ battery.charging }}</p>
-            <p v-if="battery.chargingTime"><span>Battery charging time:</span>{{ battery.chargingTime }} s</p>
-        </template>
-        <template v-if="permissions">
+
+        <div class="system__vibration">
+            <h3>Vibration</h3>
+            <div class="system__not-supported" v-if="!canVibrate">
+                <p>Sorry, the Vibration API is not supported on your device.</p>
+            </div>
+            <div class="vibration__wrapper" v-if="canVibrate">
+                <div class="vibration__item button button--left" @click="vibrate">Vibrate for 500ms</div>
+                <div class="vibration__item button button--left" @click="vibrate(1000)">Vibrate for 1s</div>
+                <div class="vibration__item button button--left" @click="vibrate(3000)">Vibrate for 3s</div>
+            </div>
+        </div>
+
+        <div class="system__permissions">
             <h3>Permissions</h3>
-            <p><span>Geolocation:</span>{{ permissionList.geolocation }}</p>
-            <p><span>Notifications:</span>{{ permissionList.notifications }}</p>
-            <p><span>Push Notifications:</span>{{ permissionList.push }}</p>
-            <p><span>MIDI Devices:</span>{{ permissionList.midi }}</p>
-            <p><span>Camera:</span>{{ permissionList.camera }}</p>
-            <p><span>Microphone:</span>{{ permissionList.microphone }}</p>
-            <p><span>Background Sync:</span>{{ permissionList.background_sync }}</p>
-            <p><span>Ambient Light Sensor:</span>{{ permissionList.ambient_light_sensor }}</p>
-            <p><span>Accelerometer:</span>{{ permissionList.accelerometer }}</p>
-            <p><span>Gyroscope:</span>{{ permissionList.gyroscope }}</p>
-            <p><span>Magnetometer:</span>{{ permissionList.magnetometer }}</p>
-        </template>
-        <h3>Location & Position</h3>
-        <p v-if="hidden"><span>Visible:</span>{{ hidden }}</p>
-        <p v-if="orientation"><span>Orientation:</span>{{ orientation }}</p>
-        <template v-if="longitude && latitude">
-            <u><span>Geolocation</span></u>
-            <p><span>Longitude:</span>{{ longitude }}</p>
-            <p><span>Latitude:</span>{{ latitude}}</p>
-        </template>
-        <template v-if="tiltLR && tiltFB && dir">
-            <u><span>Device Position</span></u>
-            <p><span>Tilt Left/Right:</span>{{ tiltLR }}</p>
-            <p><span>Tilt Front/Back:</span>{{ tiltFB }}</p>
-            <p><span>Direction:</span>{{ dir }}</p>
-        </template>
+            <div class="system__not-supported" v-if="!permissionsCalculated">
+                <p>Sorry the Permission API is not supported on your device.</p>
+            </div>
+            <div class="permissions__wrapper" v-if="permissionsCalculated">
+                <div class="permissions__item" v-for="(permission, key) in availablePermissions" :key="key">
+                    <div>
+                        <feather-icon :name="permission.icon || 'box'"></feather-icon>
+                        <span>{{ permission.title }}:</span>
+                    </div>
+                    <div>{{ permission.status }}</div>
+                </div>
+            </div>
+        </div>
     </main>
 </template>
 
@@ -53,91 +36,115 @@
         name: "System",
         data() {
             return {
-                connection: navigator.connection || navigator.mozConnection ||
-                    navigator.webkitConnection || navigator.msConnection,
-                online: navigator.onLine,
-                deviceMemory: navigator.deviceMemory || 'unknown',
-                battery: null,
-                latitude: 0.0,
-                longitude: 0.0,
-                tiltLR: 0.0,
-                tiltFB: 0.0,
-                dir: 0.0,
-                hidden: '',
-                orientation: window.screen.orientation.type,
-                permissions: 'permissions' in navigator,
-                permissionList: {
-                    geolocation: '⛔ denied️️',
-                    notifications: '⛔️ denied️',
-                    push: '⛔️ denied️',
-                    midi: '⛔ denied️️',
-                    camera: '⛔️ denied️',
-                    microphone: '⛔️ denied️',
-                    background_sync: '⛔ denied️️',
-                    ambient_light_sensor: '⛔ denied️️',
-                    accelerometer: '⛔️ denied️',
-                    gyroscope: '⛔️ denied️',
-                    magnetometer: '⛔ denied️️',
+                canVibrate: 'vibrate' in navigator,
+                permissionsCalculated: false,
+                availablePermissions: {
+                    geolocation: {
+                        title: 'Geolocation',
+                        status: '⛔️ denied️',
+                        icon: 'map-pin'
+                    },
+                    notifications: {
+                        title: 'Notifications',
+                        status: '⛔️ denied️',
+                        icon: 'bell'
+                    },
+                    push: {
+                        title: 'Push Notifications',
+                        status: '⛔️ denied️',
+                        icon: 'bell'
+                    },
+                    midi: {
+                        title: 'MIDI Devices️️',
+                        status: '⛔️ denied️',
+                        icon: 'speaker'
+                    },
+                    camera: {
+                        title: 'Camera',
+                        status: '⛔️ denied️',
+                        icon: 'camera'
+                    },
+                    microphone: {
+                        title: 'Microphone️',
+                        status: '⛔️ denied️',
+                        icon: 'mic'
+                    },
+                    'background-sync': {
+                        title: 'Background Sync️',
+                        status: '⛔️ denied️',
+                        icon: 'upload'
+                    },
+                    accelerometer: {
+                        title: 'Accelerometer️',
+                        status: '⛔️ denied️',
+                        icon: 'move'
+                    },
+                    gyroscope: {
+                        title: 'Gyroscope️',
+                        status: '⛔️ denied️',
+                        icon: 'rotate-cw'
+                    },
+                    magnetometer: {
+                        title: 'Magnetometer️️',
+                        status: '⛔️ denied️',
+                        icon: 'compass'
+                    },
+                    'clipboard-read': {
+                        title: 'Clipboard read',
+                        status: '⛔️ denied️',
+                        icon: 'clipboard'
+                    },
+                    'clipboard-write': {
+                        title: 'Clipboard write',
+                        status: '⛔️ denied️',
+                        icon: 'clipboard'
+                    },
+                    'payment-handler': {
+                        title: 'Payment Handler',
+                        status: '⛔️ denied️',
+                        icon: 'dollar-sign'
+                    },
+                    'persistent-storage': {
+                        title: 'Persistent Storage',
+                        status: '⛔️ denied️',
+                        icon: 'database'
+                    },
                 }
             }
         },
         mounted() {
-            let _this = this;
-            if ('getBattery' in navigator) {
-                (navigator.getBattery()).then(battery => _this.battery = battery);
-            }
-            if ('geolocation' in navigator) {
-                navigator.geolocation.watchPosition(function (position) {
-                    _this.latitude = position.coords.latitude;
-                    _this.longitude = position.coords.longitude;
-                });
-            }
-            if ('DeviceOrientationEvent' in window) {
-                window.addEventListener('deviceorientation', _this.deviceOrientationHandler, false);
-            }
-            if ('hidden' in document) {
-                _this.hidden = document['hidden'] ? 'hidden' : 'visible';
-            }
-            window.screen.orientation.addEventListener('change', function () {
-                _this.orientation = window.screen.orientation.type
-            });
             if ('permissions' in navigator) {
-                _this.checkPermission('geolocation');
-                _this.checkPermission('notifications');
-                _this.checkPermission('push');
-                _this.checkPermission('midi');
-                _this.checkPermission('camera');
-                _this.checkPermission('microphone');
-                _this.checkPermission('background-sync');
-                _this.checkPermission('ambient-light-sensor');
-                _this.checkPermission('accelerometer');
-                _this.checkPermission('gyroscope');
-                _this.checkPermission('magnetometer');
+                this.calculatePermissions()
             }
         },
         methods: {
-            vibrate() {
-                navigator.vibrate(500)
+            vibrate(duration = 500) {
+                navigator.vibrate(duration)
             },
-            deviceOrientationHandler(eventData) {
-                this.tiltLR = eventData.gamma;
-                this.tiltFB = eventData.beta;
-                this.dir = eventData.alpha;
-            },
-            async checkPermission(permissionName) {
-                try {
-                    let status = (await navigator.permissions.query({name: permissionName})).state,
-                        dataPermissionName = permissionName.replace('-', '_');
-                    if (status === 'granted') {
-                        this.permissionList[dataPermissionName] = '✅ granted';
-                    }
-                    if (status === 'prompt') {
-                        this.permissionList[dataPermissionName] = '⚠️ prompt';
-                    }
-                } catch (e) {
-                    // eslint-disable-next-line no-console
-                    console.log(e)
-                }
+            calculatePermissions() {
+                let _this = this,
+                    permissionKeys = Object.keys(_this.availablePermissions);
+                permissionKeys.forEach(key => {
+                    navigator.permissions.query({
+                        name: key,
+                        userVisibleOnly: true
+                    }).then(status => {
+                        let newStatus = "⛔️ denied️";
+                        switch (status.state) {
+                            case "denied":
+                                newStatus = "⛔️ denied️";
+                                break;
+                            case "granted":
+                                newStatus = "✅ granted️";
+                                break;
+                            case "prompt":
+                                newStatus = "⚠️ prompt️";
+                                break;
+                        }
+                        _this.availablePermissions[key].status = newStatus
+                    })
+                });
+                _this.permissionsCalculated = true
             }
         }
     }
