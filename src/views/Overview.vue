@@ -1,8 +1,10 @@
 <template>
     <main class="overview">
-        <template v-for="category in categories">
-            <OverviewItemsList :key="category.category" :category="category"></OverviewItemsList>
-        </template>
+        <div class="overview__wrapper">
+            <template v-for="category in categories">
+                <OverviewItemsList :key="category.category" :category="category"></OverviewItemsList>
+            </template>
+        </div>
         <a href="https://developer.mozilla.org/en-US/docs/Web/API">https://developer.mozilla.org/en-US/docs/Web/API</a>
         <a href="https://whatwebcando.today/">https://whatwebcando.today/</a>
     </main>
