@@ -1,11 +1,8 @@
 <template>
     <main class="touch-gestures" v-hammer:swipe.up="onSwipeUp">
-        <feather-icon name="chevrons-up"></feather-icon>
-        <strong>
-            Swipe from line 1 to line 2 to open the main navigation
-        </strong>
-        <hr class="two">
-        <hr class="one">
+        <div class="touch-gestures__inner">
+            <h2>Swipe Up!</h2>
+        </div>
     </main>
 </template>
 
@@ -14,7 +11,7 @@
         name: "TouchGestures",
         methods: {
             onSwipeUp() {
-                this.$store.commit('toggleMenu', true)
+                confirm("Was ist nice")
             }
         }
     }

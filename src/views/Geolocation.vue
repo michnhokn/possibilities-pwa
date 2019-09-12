@@ -1,8 +1,8 @@
 <template>
     <main class="geolocation">
-        <div class="buttons">
-            <button v-if="!locationIsTracked" @click="trackLocation">Track Location</button>
-            <button v-if="locationIsTracked" @click="stopTracking">Stop Tracking</button>
+        <div class="geolocation__controls">
+            <button class="track" v-if="!locationIsTracked" @click="trackLocation">Track Location</button>
+            <button class="stop-track" v-if="locationIsTracked" @click="stopTracking">Stop Tracking</button>
             <button v-if="trackingPath" @click="showWholeTrack">Show whole track</button>
         </div>
         <div id="map"></div>
@@ -11,7 +11,6 @@
 
 <script>
     import L from 'leaflet'
-    import Random from "../utility/random";
 
     export default {
         name: "Geolocation",
@@ -34,15 +33,14 @@
                 maxZoom: 19,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(_this.map);
-            _this.showCurrentLocation()
         },
         methods: {
             trackLocation() {
                 let _this = this;
-
                 _this.locationIsTracked = true;
                 _this.trackingPath = L.polyline([], {
-                    color: Random.getRandomColor()
+                    color: '#ff0000',
+                    weight: 6
                 }).addTo(_this.map);
                 _this.addCurrentGeolocation();
                 _this.trackingInterval = setInterval(() => {
@@ -57,21 +55,6 @@
             showWholeTrack() {
                 let _this = this;
                 _this.map.fitBounds(_this.trackingPath.getBounds());
-            },
-            showCurrentLocation() {
-                let _this = this,
-                    userPositionIcon = L.icon({
-                        iconUrl: 'img/icons/icon.png',
-                        iconSize: [38, 95],
-                        iconAnchor: [22, 94],
-                        popupAnchor: [-3, -76],
-                    });
-
-                navigator.geolocation.getCurrentPosition((position => {
-                    L.marker([position.coords.latitude, position.coords.longitude], {
-                        icon: userPositionIcon
-                    }).addTo(_this.map);
-                }))
             },
             addCurrentGeolocation() {
                 let _this = this;
