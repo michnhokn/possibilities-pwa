@@ -56,11 +56,11 @@
             setupCamera(facingMode = 'user') {
                 let _this = this;
                 _this.getVideoCapabilities(facingMode).then(track => {
-                    let settings = track.getSettings();
+                    let capabilities = track.getCapabilities(), settings = track.getSettings();
                     _this.currentAspectRatio = _this.$refs['video'].clientWidth / _this.$refs['video'].clientHeight;
                     _this.initCamera(
-                        settings.height * _this.currentAspectRatio,
-                        settings.height,
+                        capabilities.height.max * _this.currentAspectRatio,
+                        capabilities.height.max,
                         facingMode
                     )
                 });
