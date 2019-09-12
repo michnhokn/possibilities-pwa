@@ -84,7 +84,7 @@
   &__stream {
     width: 100%;
     height: calc(100vh - 55px);
-    object-fit: cover;
+    object-fit: contain;
 
     &.user {
       -webkit-transform: scaleX(-1);
