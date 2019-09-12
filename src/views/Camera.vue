@@ -1,6 +1,5 @@
 <template>
     <main class="camera">
-        <pre class="camera__info">{{ cameraInfo }}</pre>
         <div class="camera__last" v-if="showLastImage">
             <div @click="closeLastImage">
                 <feather-icon name="x"/>
@@ -19,6 +18,7 @@
                 <feather-icon :name="currentFacingMode === 'user' ? 'image' : 'user'"/>
             </button>
         </div>
+        <canvas class="camera__canvas" ref="canvas"></canvas>
     </main>
 </template>
 
@@ -101,15 +101,13 @@
                 );
             },
             takePhoto() {
-                let _this = this,
-                    // settings = _this.imageCapture.track.getSettings(),
-                    reader = new FileReader();
-                _this.imageCapture.takePhoto().then(blob => {
-                    reader.readAsDataURL(blob);
-                    reader.onloadend = function () {
-                        _this.imageSrc = reader.result;
-                    }
-                })
+                let _this = this;
+                _this.imageCapture.grabFrame().then(imageBitmap => {
+                    _this.$refs['canvas'].width = imageBitmap.width;
+                    _this.$refs['canvas'].height = imageBitmap.height;
+                    _this.$refs['canvas'].getContext('2d').drawImage(imageBitmap, 0, 0);
+                    _this.imageSrc = _this.$refs['canvas'].toDataURL();
+                });
             },
             openLastImage() {
                 this.showLastImage = true;
