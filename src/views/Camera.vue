@@ -29,7 +29,6 @@
             return {
                 imageCapture: null,
                 imageSrc: null,
-                cameraIsSwitchable: false,
                 showLastImage: false,
                 currentAspectRatio: null
             }
@@ -38,8 +37,8 @@
             currentFacingMode() {
                 return this.imageCapture.track.getConstraints()['facingMode']
             },
-            cameraInfo() {
-                return this.imageCapture ? this.imageCapture.track.getSettings() : ''
+            cameraIsSwitchable() {
+                return this.imageCapture ? this.imageCapture.track.getCapabilities()['facingMode'].length > 0 : false
             }
         },
         mounted() {
