@@ -7,7 +7,9 @@ import FeatherIcon from './components/FeatherIcon'
 import Benchmark, {Suite} from 'asyncmark'
 import './registerServiceWorker'
 import {VueHammer} from 'vue2-hammer'
+import VDragged from 'v-dragged'
 
+Vue.use(VDragged);
 Vue.use(VueHammer);
 Vue.component('feather-icon', FeatherIcon);
 Vue.prototype.$benchmark = Benchmark;

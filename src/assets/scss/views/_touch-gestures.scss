@@ -1,12 +1,14 @@
 .touch-gestures {
   height: calc(100vh - 50px);
-  padding: 0;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
 
-  &__content {
-
+  &__inner {
+    > div {
+      width: 100px;
+      height: 100px;
+      background-color: $primaryColor;
+      position: absolute;
+      left: 10px;
+      top: 60px;
+    }
   }
 }

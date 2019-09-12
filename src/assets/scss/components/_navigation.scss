@@ -64,6 +64,10 @@
       cursor: not-allowed;
       text-decoration: line-through;
       font-style: italic;
+      &:hover {
+        border-color: transparent;
+        background-color: transparent;
+      }
     }
   }
 }

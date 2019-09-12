@@ -14,6 +14,7 @@
     "feather-icons": "^4.22.1",
     "leaflet": "^1.5.1",
     "register-service-worker": "^1.6.2",
+    "v-dragged": "0.0.5",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vue2-hammer": "^2.1.2",
