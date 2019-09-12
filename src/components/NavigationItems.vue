@@ -3,16 +3,16 @@
         <NavigationItem icon="home" to="/">Homepage</NavigationItem>
         <NavigationItem icon="box" to="/overview">Feature Overview</NavigationItem>
         <NavigationItem icon="activity" to="/system">System Information</NavigationItem>
-        <NavigationItem icon="camera" to="/camera" v-if="camera">
+        <NavigationItem icon="camera" to="/camera" v-if="camera" :disabled="!camera">
             Camera
         </NavigationItem>
-        <NavigationItem icon="smartphone" to="/push-notifications" v-if="notification">
+        <NavigationItem icon="smartphone" to="/push-notifications" :disabled="!notification">
             Push Notifications
         </NavigationItem>
-        <NavigationItem icon="map-pin" to="/geolocation" v-if="geolocation">
+        <NavigationItem icon="map-pin" to="/geolocation" :disabled="!geolocation">
             Geo Location
         </NavigationItem>
-        <NavigationItem icon="move" to="/touch-gestures" v-if="ontouchstart">
+        <NavigationItem icon="move" to="/touch-gestures" :disabled="!ontouchstart">
             Touch Gestures
         </NavigationItem>
     </div>

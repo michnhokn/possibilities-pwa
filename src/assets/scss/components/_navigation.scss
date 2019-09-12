@@ -58,5 +58,12 @@
       margin-right: 12px;
       stroke-width: 1px !important;
     }
+
+    &.disabled {
+      color: lighten($blackColor, 40);
+      border-color: lighten($blackColor, 80);
+      background-color:  lighten($blackColor, 90);
+      cursor: not-allowed;
+    }
   }
 }
