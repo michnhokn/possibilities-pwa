@@ -7,17 +7,15 @@
             <img :src="imageSrc" alt="" v-if="imageSrc">
         </div>
         <video ref="video" class="camera__stream" autoplay muted></video>
-        <div class="camera__controls">
-            <button @click="takePhoto">
-                <feather-icon name="camera"/>
-            </button>
-            <button class="image" v-if="imageSrc" @click="openLastImage">
-                <img :src="imageSrc" alt="">
-            </button>
-            <button @click="switchCamera" v-if="cameraIsSwitchable" class="secondary">
-                <feather-icon :name="currentFacingMode === 'user' ? 'image' : 'user'"/>
-            </button>
-        </div>
+        <button class="camera__open-last" v-if="imageSrc" @click="openLastImage">
+            <img :src="imageSrc" alt="">
+        </button>
+        <button class="camera__take-photo" @click="takePhoto">
+            <feather-icon name="camera"/>
+        </button>
+        <button class="camera__switch" @click="switchCamera" v-if="cameraIsSwitchable">
+            <feather-icon :name="currentFacingMode === 'user' ? 'image' : 'user'"/>
+        </button>
         <canvas class="camera__canvas" ref="canvas"></canvas>
     </main>
 </template>
