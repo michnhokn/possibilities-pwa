@@ -6,7 +6,7 @@
             </div>
             <img :src="imageSrc" alt="" v-if="imageSrc">
         </div>
-        <video ref="video" class="camera__stream" autoplay muted></video>
+        <video ref="video" class="camera__stream" :class="{user:(cameraIsSwitchable && currentFacingMode === 'user')}" autoplay muted></video>
         <button class="camera__open-last" v-if="imageSrc" @click="openLastImage">
             <img :src="imageSrc" alt="">
         </button>
@@ -27,6 +27,7 @@
             return {
                 imageCapture: null,
                 imageSrc: null,
+                track: null,
                 showLastImage: false,
                 currentAspectRatio: null
             }
@@ -79,14 +80,6 @@
                 return new Promise((resolve, reject) => {
                         navigator.mediaDevices.getUserMedia({
                             video: {
-                                // width: {
-                                //     min: width,
-                                //     max: width
-                                // },
-                                // height: {
-                                //     min: height,
-                                //     max: height
-                                // },
                                 resizeMode: "none",
                                 facingMode: facingMode,
                                 frameRate: {
@@ -95,11 +88,8 @@
                             }
                         }).then(mediaStream => {
                             _this.$refs['video'].srcObject = mediaStream;
-                            _this.imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
-                            // eslint-disable-next-line no-console
-                            console.log("Capabilities:", _this.imageCapture.track.getCapabilities());
-                            // eslint-disable-next-line no-console
-                            console.log("Settings:", _this.imageCapture.track.getSettings());
+                            _this.track = mediaStream.getVideoTracks()[0];
+                            _this.imageCapture = new ImageCapture(_this.track);
                             resolve()
                         }).catch(error => reject(error));
                     }
@@ -119,6 +109,13 @@
             },
             closeLastImage() {
                 this.showLastImage = false;
+            }
+        },
+        beforeDestroy() {
+            this.$refs['video'].srcObject = null;
+            this.imageCapture = null;
+            if (this.track) {
+                this.track.stop()
             }
         }
     }

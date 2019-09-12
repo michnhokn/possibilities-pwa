@@ -1,9 +1,7 @@
 <template>
     <div class="possibilities-pwa">
         <Header></Header>
-        <keep-alive>
-            <router-view></router-view>
-        </keep-alive>
+        <router-view></router-view>
     </div>
 </template>
 
