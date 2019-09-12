@@ -91,7 +91,8 @@
                                 frameRate: {
                                     ideal: 60
                                 }
-                            }
+                            },
+                            advanced: [{zoom: 0}]
                         }).then(mediaStream => {
                             _this.$refs['video'].srcObject = mediaStream;
                             _this.imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
