@@ -10,7 +10,7 @@
         <button class="camera__open-last" v-if="imageSrc" @click="openLastImage">
             <img :src="imageSrc" alt="">
         </button>
-        <button class="camera__take-photo" @click="takePhoto">
+        <button class="camera__take-photo" @click="takePhoto" v-if="imageCapture">
             <feather-icon name="camera"/>
         </button>
         <button class="camera__switch" @click="switchCamera" v-if="cameraIsSwitchable">
@@ -40,7 +40,7 @@
             }
         },
         mounted() {
-            this.setupCamera()
+            this.setupCamera();
         },
         methods: {
             switchCamera() {
@@ -87,7 +87,9 @@
                                     min: height,
                                     max: height
                                 },
-                                facingMode: facingMode,
+                                facingMode: {
+                                    exact: facingMode
+                                },
                                 frameRate: {
                                     ideal: 60
                                 }
