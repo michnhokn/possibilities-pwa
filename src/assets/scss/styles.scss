@@ -10,6 +10,10 @@ $whiteColor: #ffffff;
   padding: 0;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body, html {
   width: 100%;
   height: 100%;
@@ -28,6 +32,11 @@ svg.feather-icon {
   stroke-width: 2px;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.possibilities-pwa {
+  padding-top: 50px;
+  height: calc(100% - 55px);
 }
 
 @import "components/header";
