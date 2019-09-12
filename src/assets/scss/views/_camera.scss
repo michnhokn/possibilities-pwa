@@ -85,6 +85,8 @@
     width: 100%;
     height: calc(100vh - 55px);
     object-fit: cover;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
   }
 
   &__switch {
