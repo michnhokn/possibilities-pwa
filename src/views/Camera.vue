@@ -56,13 +56,8 @@
             setupCamera(facingMode = 'environment') {
                 let _this = this;
                 _this.getVideoCapabilities(facingMode).then(track => {
-                    let capabilities = track.getCapabilities(), settings = track.getSettings();
-                    // eslint-disable-next-line no-console
-                    console.log("Capabilities:", capabilities);
-                    // eslint-disable-next-line no-console
-                    console.log("Settings:", settings);
+                    let settings = track.getSettings();
                     _this.currentAspectRatio = _this.$refs['video'].clientWidth / _this.$refs['video'].clientHeight;
-                    _this.cameraIsSwitchable = capabilities.facingMode.length > 0;
                     _this.initCamera(
                         settings.height * _this.currentAspectRatio,
                         settings.height,
