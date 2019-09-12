@@ -56,11 +56,11 @@
             setupCamera(facingMode = 'user') {
                 let _this = this;
                 _this.getVideoCapabilities(facingMode).then(track => {
-                    let capabilities = track.getCapabilities(), settings = track.getSettings();
+                    let settings = track.getSettings();
                     _this.currentAspectRatio = _this.$refs['video'].clientWidth / _this.$refs['video'].clientHeight;
                     _this.initCamera(
-                        capabilities.height.max * _this.currentAspectRatio,
-                        capabilities.height.max,
+                        settings.height * _this.currentAspectRatio,
+                        settings.height,
                         facingMode
                     )
                 });
@@ -87,12 +87,12 @@
                                     min: height,
                                     max: height
                                 },
+                                resizeMode: "none",
                                 facingMode: facingMode,
                                 frameRate: {
                                     ideal: 60
                                 }
-                            },
-                            advanced: [{zoom: 0}]
+                            }
                         }).then(mediaStream => {
                             _this.$refs['video'].srcObject = mediaStream;
                             _this.imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
