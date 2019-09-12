@@ -97,7 +97,9 @@
                             _this.$refs['video'].srcObject = mediaStream;
                             _this.imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
                             // eslint-disable-next-line no-console
-                            console.log(_this.imageCapture.track.getCapabilities());
+                            console.log("Capabilities:", _this.imageCapture.track.getCapabilities());
+                            // eslint-disable-next-line no-console
+                            console.log("Settings:", _this.imageCapture.track.getSettings());
                             resolve()
                         }).catch(error => reject(error));
                     }
