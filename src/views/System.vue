@@ -7,7 +7,8 @@
                 <p>Sorry, the Vibration API is not supported on your device.</p>
             </div>
             <div class="vibration__wrapper" v-if="canVibrate">
-                <div class="vibration__item button button--left" @click="vibrate">Vibrate for 500ms</div>
+                <div class="vibration__item button button--left" @click="vibrate(100)">Vibrate for 100ms</div>
+                <div class="vibration__item button button--left" @click="vibrate(500)">Vibrate for 500ms</div>
                 <div class="vibration__item button button--left" @click="vibrate(1000)">Vibrate for 1s</div>
                 <div class="vibration__item button button--left" @click="vibrate(3000)">Vibrate for 3s</div>
             </div>
@@ -19,12 +20,10 @@
                 <p>Sorry the Permission API is not supported on your device.</p>
             </div>
             <div class="permissions__wrapper" v-if="permissionsCalculated">
-                <div class="permissions__item" v-for="(permission, key) in availablePermissions" :key="key">
-                    <div>
-                        <feather-icon :name="permission.icon || 'box'"></feather-icon>
-                        <span>{{ permission.title }}:</span>
-                    </div>
-                    <div>{{ permission.status }}</div>
+                <div class="permissions__item" v-for="(permission, key) in availablePermissions"
+                     :key="key" :class="permission.status">
+                    <feather-icon :name="permission.icon || 'box'"></feather-icon>
+                    <span>{{ permission.title }}</span>
                 </div>
             </div>
         </div>
@@ -41,72 +40,72 @@
                 availablePermissions: {
                     geolocation: {
                         title: 'Geolocation',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'map-pin'
                     },
                     notifications: {
                         title: 'Notifications',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'bell'
                     },
                     push: {
                         title: 'Push Notifications',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'bell'
                     },
                     midi: {
                         title: 'MIDI Devices️️',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'speaker'
                     },
                     camera: {
                         title: 'Camera',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'camera'
                     },
                     microphone: {
                         title: 'Microphone️',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'mic'
                     },
                     'background-sync': {
                         title: 'Background Sync️',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'upload'
                     },
                     accelerometer: {
                         title: 'Accelerometer️',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'move'
                     },
                     gyroscope: {
                         title: 'Gyroscope️',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'rotate-cw'
                     },
                     magnetometer: {
                         title: 'Magnetometer️️',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'compass'
                     },
                     'clipboard-read': {
                         title: 'Clipboard read',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'clipboard'
                     },
                     'clipboard-write': {
                         title: 'Clipboard write',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'clipboard'
                     },
                     'payment-handler': {
                         title: 'Payment Handler',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'dollar-sign'
                     },
                     'persistent-storage': {
                         title: 'Persistent Storage',
-                        status: '⛔️ denied️',
+                        status: 'denied',
                         icon: 'database'
                     },
                 }
@@ -129,16 +128,16 @@
                         name: key,
                         userVisibleOnly: true
                     }).then(status => {
-                        let newStatus = "⛔️ denied️";
+                        let newStatus = "denied";
                         switch (status.state) {
                             case "denied":
-                                newStatus = "⛔️ denied️";
+                                newStatus = "denied";
                                 break;
                             case "granted":
-                                newStatus = "✅ granted️";
+                                newStatus = "granted️";
                                 break;
                             case "prompt":
-                                newStatus = "⚠️ prompt️";
+                                newStatus = "prompt️";
                                 break;
                         }
                         _this.availablePermissions[key].status = newStatus

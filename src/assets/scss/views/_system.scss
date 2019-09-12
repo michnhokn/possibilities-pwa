@@ -12,21 +12,46 @@
   &__permissions {
     .permissions {
       &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
 
+        @media (min-width: 850px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: 1440px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (min-width: 1920px) {
+          grid-template-columns: repeat(4, 1fr);
+        }
       }
 
       &__item {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        margin-bottom: 10px;
+        text-align: center;
+        flex-direction: column;
+        border: 1px solid $primaryColor;
+        background-color: rgba($primaryColor, .15);
+        padding: 10px;
+        border-radius: 4px;
 
         svg {
-          height: 18px;
-          width: 18px;
           stroke-width: 1px;
-          margin-right: 10px;
-          margin-bottom: -3px;
+          margin-bottom: 10px;
+        }
+
+        &.granted️ {
+          border-color: $successColor;
+          background-color: rgba($successColor, .15);
+        }
+
+        &.denied {
+          border-color: lighten($dangerColor, 20);
+          background-color: rgba($dangerColor, .15);
         }
       }
     }
