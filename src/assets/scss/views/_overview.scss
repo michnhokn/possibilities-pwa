@@ -55,12 +55,12 @@
     text-decoration: none;
 
     svg {
-      color: red;
+      color: $dangerColor;
       margin-right: 12px;
       stroke-width: 1px !important;
 
       &.true {
-        color: green
+        color: $successColor
       }
 
       &.external {
