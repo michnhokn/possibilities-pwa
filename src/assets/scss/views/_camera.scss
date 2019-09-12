@@ -32,12 +32,14 @@
 
   &__open-last {
     position: fixed;
-    right: 10px;
-    top: 60px;
+    margin: 0;
+    right: 20px;
+    bottom: 20px;
     width: 50px;
     height: 50px;
     padding: 0;
     overflow: hidden;
+    border-radius: 50%;
     border-width: 2px;
 
     img {
@@ -49,11 +51,12 @@
 
   &__take-photo {
     position: fixed;
-    bottom: 30px;
+    bottom: 20px;
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    color: $primaryColor;
+    background-color: $primaryColor;
+    color: $blackColor;
     left: 0;
     right: 0;
     margin: auto;
@@ -84,6 +87,7 @@
   &__stream {
     width: 100%;
     height: calc(100vh - 55px);
+    object-fit: cover;
 
     &.user {
       -webkit-transform: scaleX(-1);
