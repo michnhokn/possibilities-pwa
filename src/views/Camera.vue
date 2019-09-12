@@ -79,14 +79,14 @@
                 return new Promise((resolve, reject) => {
                         navigator.mediaDevices.getUserMedia({
                             video: {
-                                width: {
-                                    min: width,
-                                    max: width
-                                },
-                                height: {
-                                    min: height,
-                                    max: height
-                                },
+                                // width: {
+                                //     min: width,
+                                //     max: width
+                                // },
+                                // height: {
+                                //     min: height,
+                                //     max: height
+                                // },
                                 resizeMode: "none",
                                 facingMode: facingMode,
                                 frameRate: {
