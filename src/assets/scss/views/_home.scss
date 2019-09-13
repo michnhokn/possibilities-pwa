@@ -1,0 +1,8 @@
+.home {
+  &__navigation-info {
+    padding: 0 20px;
+    font-size: .9rem;
+    color: lighten($blackColor, 60);
+    text-align: center;
+  }
+}

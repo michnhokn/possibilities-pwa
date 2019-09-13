@@ -1,6 +1,9 @@
 <template>
-    <main>
+    <main class="home">
         <NavigationItems/>
+        <div class="home__navigation-info">
+            You can swipe to the right on any subpage to go back to the main navigation.
+        </div>
     </main>
 </template>
 

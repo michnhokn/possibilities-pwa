@@ -1,7 +1,7 @@
 <template>
     <main class="touch-gestures">
         <div class="touch-gestures__inner">
-            <div v-hammer:pan="handleDrag">
+            <div class="touch-gestures__box" v-hammer:pan="handleDrag">
                 <p><span>ClientX:</span> {{ clientX }}</p>
                 <p><span>ClientY:</span> {{ clientY }}</p>
                 <p><span>PointerX:</span> {{ centerX ? centerX + 'px' : 'null' }}</p>
@@ -19,8 +19,8 @@
             return {
                 lastPosX: 0,
                 lastPosY: 0,
-                clientX: '10px',
-                clientY: '60px',
+                clientX: '20px',
+                clientY: '70px',
                 centerX: '',
                 centerY: '',
                 isDragging: false,

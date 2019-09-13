@@ -16,7 +16,7 @@ Vue.prototype.$benchmark = Benchmark;
 Vue.prototype.$suite = Suite;
 
 VueHammer.config.swipe = {
-    threshold: 150
+    threshold: 250
 };
 
 new Vue({
