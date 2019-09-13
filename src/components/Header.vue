@@ -13,7 +13,7 @@
                 {{ $route.name }}
             </template>
         </div>
-        <p class="header__version">0.1.41</p>
+        <p class="header__version">0.1.42</p>
     </header>
 </template>
 
