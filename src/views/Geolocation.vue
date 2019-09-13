@@ -20,7 +20,7 @@
                 trackingPath: null,
                 tileLayer: null,
                 locationIsTracked: false,
-                trackingInterval: null,
+                trackingId: null,
                 startPosition: null,
                 canGetLocation: false
             }
@@ -68,29 +68,21 @@
                     color: '#ff0314',
                     weight: 6
                 }).addTo(_this.map);
-                _this.addCurrentGeolocation();
-                _this.trackingInterval = setInterval(() => {
-                    _this.addCurrentGeolocation()
-                }, 3600)
-            },
-            stopTracking() {
-                let _this = this;
-                _this.locationIsTracked = false;
-                clearInterval(_this.trackingInterval)
-            },
-            showWholeTrack() {
-                let _this = this;
-                _this.map.fitBounds(_this.trackingPath.getBounds());
-            },
-            addCurrentGeolocation() {
-                let _this = this;
-
-                navigator.geolocation.getCurrentPosition((position => {
+                _this.trackingId = navigator.geolocation.watchPosition((position) => {
                     _this.trackingPath.addLatLng(L.latLng(
                         position.coords.latitude,
                         position.coords.longitude
                     ));
-                }))
+                });
+            },
+            stopTracking() {
+                let _this = this;
+                _this.locationIsTracked = false;
+                navigator.geolocation.clearWatch(_this.trackingId);
+            },
+            showWholeTrack() {
+                let _this = this;
+                _this.map.fitBounds(_this.trackingPath.getBounds());
             }
         }
     }
