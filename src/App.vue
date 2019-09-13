@@ -1,5 +1,5 @@
 <template>
-    <div class="possibilities-pwa" v-hammer:swipe.right="historyBack">
+    <div class="possibilities-pwa">
         <Header></Header>
         <router-view></router-view>
     </div>
@@ -10,15 +10,7 @@
 
     export default {
         name: "App",
-        components: {Header},
-        methods: {
-            historyBack(ev) {
-                let leftStart = ev.center.x - ev.deltaX;
-                if (this.$route.path !== "/" && leftStart < 20) {
-                    this.$router.back()
-                }
-            }
-        }
+        components: {Header}
     }
 </script>
 

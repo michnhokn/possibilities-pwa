@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.4fb61b854af2af46c4be259fd6ac52dc.js"
+  "/precache-manifest.28d8fedd2349bae38e3460561e1872e0.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "possibilities-pwa"});
