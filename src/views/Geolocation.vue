@@ -27,17 +27,21 @@
         },
         mounted() {
             let _this = this;
-            if ('permissions' in navigator && 'geolocation' in navigator) {
-                navigator.permissions.query({name: "geolocation"}).then(result => {
-                    if (result.state === "granted") {
-                        navigator.geolocation.getCurrentPosition(location => {
-                            _this.initMap([location.coords.latitude, location.coords.longitude], 18, true)
-                        });
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    location => {
+                        _this.initMap([location.coords.latitude, location.coords.longitude], 18, true);
                         _this.canGetLocation = true
-                    } else {
-                        _this.initMap()
+                    },
+                    error => {
+                        _this.initMap();
+                        this.$toasted.show(error.message, {
+                            theme: "toasted-primary",
+                            position: "bottom-center",
+                            duration: 5000
+                        });
                     }
-                })
+                );
             } else {
                 _this.initMap()
             }

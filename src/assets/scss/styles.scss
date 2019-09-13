@@ -12,8 +12,10 @@ $whiteColor: #ffffff;
   padding: 0;
 }
 
-html {
-  overflow-x: hidden;
+html,
+body {
+  position: fixed;
+  overflow: hidden;
 }
 
 body {
@@ -33,6 +35,11 @@ svg.feather-icon {
 
 .possibilities-pwa {
   padding-top: 50px;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
 }
 
 @import "components/header";
