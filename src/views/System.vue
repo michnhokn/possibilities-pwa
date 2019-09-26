@@ -1,6 +1,5 @@
 <template>
     <main class="system">
-
         <div class="system__vibration">
             <h3>Vibration</h3>
             <div class="system__not-supported" v-if="!canVibrate">
@@ -26,6 +25,11 @@
                     <span>{{ permission.title }}</span>
                 </div>
             </div>
+        </div>
+
+        <div class="system__referrer">
+            <h3>Referrer</h3>
+            <p>{{ referrer }}</p>
         </div>
     </main>
 </template>
@@ -109,6 +113,11 @@
                         icon: 'database'
                     },
                 }
+            }
+        },
+        computed: {
+            referrer() {
+                return document.referrer || 'no referrer'
             }
         },
         mounted() {
