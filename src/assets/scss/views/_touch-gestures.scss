@@ -1,0 +1,25 @@
+.touch-gestures {
+  height: calc(100vh - 50px);
+  padding: 0;
+
+  &__box {
+    width: 170px;
+    padding: 10px;
+    background-color: $primaryColor;
+    position: absolute;
+    left: 20px;
+    top: 70px;
+    border-radius: 4px;
+    box-shadow: 0 9px 20px 0 rgba(0, 0, 0, 0.13);
+    cursor: pointer;
+
+    p {
+      pointer-events: none;
+
+      span {
+        display: inline-block;
+        width: 90px;
+      }
+    }
+  }
+}

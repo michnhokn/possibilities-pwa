@@ -1,10 +1,9 @@
 <template>
     <div class="overview-items-list">
-        <div class="name" @click="show = !show">
+        <div class="name">
             <span>{{ category.name }}</span>
-            <feather-icon :name="show ? 'chevron-up' : 'chevron-down'"></feather-icon>
         </div>
-        <div class="overview-items" v-show="show">
+        <div class="overview-items">
             <OverviewItem v-for="possibility in category.possibilities"
                           :service-name="possibility.service"
                           :key="possibility.service"

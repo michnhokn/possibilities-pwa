@@ -1,29 +1,22 @@
 <template>
     <main class="camera">
-        <div ref="photo-container" class="photo-container" v-show="imageCapture">
-            <video ref="video" autoplay muted></video>
-            <div class="controls">
-                <button @click="closeCamera" class="secondary">
-                    <feather-icon name="x"/>
-                </button>
-                <button @click="startBenchmark">
-                    <feather-icon name="camera"/>
-                </button>
-                <button @click="switchCamera" class="secondary">
-                    <feather-icon name="rotate-cw"/>
-                </button>
+        <div class="camera__last" v-if="showLastImage">
+            <div @click="closeLastImage">
+                <feather-icon name="x"/>
             </div>
+            <img :src="imageSrc" alt="" v-if="imageSrc">
         </div>
-        <img v-if="imageSrc" ref="image" :src="imageSrc" alt="Test image">
-        <div class="results" v-if="result">
-            <p><strong>Resolution:</strong>{{ photoWidth }} x {{ photoHeight }}</p>
-            <p><strong>Total:</strong>{{ result.total | fixed }} ms</p>
-            <p><strong>Average:</strong>{{ result.average | fixed }} ms</p>
-            <p><strong>Ops/Second:</strong>{{result.opsPerSec | fixed }}</p>
-            <p><strong>Fastest:</strong>{{ result.fastest | fixed }} ms</p>
-            <p><strong>Slowest:</strong>{{ result.slowest | fixed }} ms</p>
-        </div>
-        <button @click="prepareBenchmark">Open Camera</button>
+        <video ref="video" class="camera__stream" :class="{user:(cameraIsSwitchable && currentFacingMode === 'user')}" autoplay muted></video>
+        <button class="camera__open-last" v-if="imageSrc" @click="openLastImage">
+            <img :src="imageSrc" alt="">
+        </button>
+        <button class="camera__take-photo" @click="takePhoto" v-if="imageCapture">
+            <feather-icon name="camera"/>
+        </button>
+        <button class="camera__switch" @click="switchCamera" v-if="cameraIsSwitchable">
+            <feather-icon :name="currentFacingMode === 'user' ? 'image' : 'user'"/>
+        </button>
+        <canvas class="camera__canvas" ref="canvas"></canvas>
     </main>
 </template>
 
@@ -32,73 +25,71 @@
         name: "Camera",
         data() {
             return {
-                benchMark: null,
-                result: null,
                 imageCapture: null,
                 imageSrc: null,
-                photoWidth: 0,
-                photoHeight: 0,
+                track: null,
+                showLastImage: false,
+                currentAspectRatio: null
             }
         },
-        filters: {
-            fixed(value) {
-                if (!value) return '';
-                return Number.parseFloat(value).toFixed(2);
+        computed: {
+            currentFacingMode() {
+                return this.imageCapture.track.getConstraints()['facingMode']
+            },
+            cameraIsSwitchable() {
+                return this.imageCapture ? this.imageCapture.track.getCapabilities()['facingMode'].length > 0 : false
             }
         },
         mounted() {
-            let _this = this;
-            document.addEventListener('fullscreenchange', () => {
-                if (!document.fullscreenElement) {
-                    _this.imageCapture = null
-                }
-            });
-            _this.benchMark = new this.$benchmark({
-                name: 'Take photo',
-                number: 1,
-                before() {
-                    _this.result = null;
-                    _this.imageSrc = null
-                },
-                fun: () => _this.takePhoto(),
-                after: result => _this.result = result
-            });
+            this.setupCamera();
         },
         methods: {
-            startBenchmark() {
-                this.benchMark.run();
-            },
-            prepareBenchmark() {
-                this.setUserMedia();
-                this.$refs['photo-container'].requestFullscreen();
-            },
             switchCamera() {
-                let facingMode = this.imageCapture.track.getConstraints()['facingMode'];
-                if (facingMode !== undefined) {
-                    if (facingMode === 'environment') {
-                        this.setUserMedia('user');
+                let _this = this;
+                if (_this.cameraIsSwitchable) {
+                    if (_this.currentFacingMode === 'environment') {
+                        _this.setupCamera('user')
                     } else {
-                        this.setUserMedia();
+                        _this.setupCamera('environment')
                     }
                 }
             },
-            closeCamera() {
-                document.exitFullscreen();
+            setupCamera(facingMode = 'user') {
+                let _this = this;
+                _this.getVideoCapabilities(facingMode).then(track => {
+                    let settings = track.getSettings();
+                    _this.currentAspectRatio = _this.$refs['video'].clientWidth / _this.$refs['video'].clientHeight;
+                    _this.initCamera(
+                        settings.height * _this.currentAspectRatio,
+                        settings.height,
+                        facingMode
+                    )
+                });
             },
-            setUserMedia(facingMode = 'environment') {
+            getVideoCapabilities(facingMode = 'user') {
+                return new Promise((resolve, reject) => {
+                        navigator.mediaDevices.getUserMedia({video: {facingMode: facingMode}}).then(mediaStream => {
+                            let imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
+                            resolve(imageCapture.track)
+                        }).catch(error => reject(error));
+                    }
+                );
+            },
+            initCamera(width, height, facingMode = 'user') {
                 let _this = this;
                 return new Promise((resolve, reject) => {
                         navigator.mediaDevices.getUserMedia({
                             video: {
-                                width: 1080,
-                                height: 1920,
-                                aspectRatio: 9 / 16,
+                                resizeMode: "none",
                                 facingMode: facingMode,
-                                frameRate: {ideal: 60}
+                                frameRate: {
+                                    ideal: 60
+                                }
                             }
                         }).then(mediaStream => {
                             _this.$refs['video'].srcObject = mediaStream;
-                            _this.imageCapture = new ImageCapture(mediaStream.getVideoTracks()[0]);
+                            _this.track = mediaStream.getVideoTracks()[0];
+                            _this.imageCapture = new ImageCapture(_this.track);
                             resolve()
                         }).catch(error => reject(error));
                     }
@@ -106,26 +97,25 @@
             },
             takePhoto() {
                 let _this = this;
-                return new Promise((resolve, reject) => {
-                    let photoCapablilities = _this.imageCapture.getPhotoCapabilities();
-                    photoCapablilities.then(capabilities => {
-                        _this.imageCapture.takePhoto({
-                            imageWidth: (_this.photoWidth = capabilities.imageWidth.max),
-                            imageHeight: (_this.photoHeight = capabilities.imageHeight.max)
-                        }).then(blob => {
-                            let reader = new FileReader();
-                            reader.readAsDataURL(blob);
-                            reader.onloadend = function () {
-                                _this.imageSrc = reader.result;
-                                document.exitFullscreen();
-                                _this.imageCapture = null;
-                                resolve()
-                            }
-                        }).catch(error => {
-                            reject(error)
-                        });
-                    });
+                _this.imageCapture.grabFrame().then(imageBitmap => {
+                    _this.$refs['canvas'].width = imageBitmap.width;
+                    _this.$refs['canvas'].height = imageBitmap.height;
+                    _this.$refs['canvas'].getContext('2d').drawImage(imageBitmap, 0, 0);
+                    _this.imageSrc = _this.$refs['canvas'].toDataURL();
                 });
+            },
+            openLastImage() {
+                this.showLastImage = true;
+            },
+            closeLastImage() {
+                this.showLastImage = false;
+            }
+        },
+        beforeDestroy() {
+            this.$refs['video'].srcObject = null;
+            this.imageCapture = null;
+            if (this.track) {
+                this.track.stop()
             }
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="home">
         <NavigationItems/>
     </main>
 </template>

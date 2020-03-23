@@ -1,5 +1,8 @@
 <template>
-    <router-link tag="div" class="navigation__item" :to="to" @click.native="closeMenu">
+    <router-link tag="div" class="navigation__item"
+                 :to="to" @click.native="closeMenu"
+                 :class="{'disabled':disabled}"
+                 :event="!disabled ? 'click' : ''">
         <feather-icon :name="icon"></feather-icon>
         <span><slot></slot></span>
     </router-link>
@@ -17,6 +20,11 @@
                 type: String,
                 required: false,
                 default: 'file-text'
+            },
+            disabled: {
+                type: Boolean,
+                required: false,
+                default: false
             }
         },
         methods: {

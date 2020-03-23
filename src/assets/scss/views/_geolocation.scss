@@ -1,0 +1,38 @@
+.geolocation {
+  padding: 0;
+
+  #map {
+    height: calc(100vh - 50px);
+  }
+
+  &__controls {
+    position: fixed;
+    z-index: 1100;
+    left: 20px;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    background-color: $primaryColor;
+    box-shadow: 0 2px 4px rgba($blackColor, .2);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 100px;
+
+    button {
+      margin: 0;
+      border: none;
+      border-radius: 100px;
+
+      &.track, &.stop-track {
+      }
+
+      &.track {
+        background-color: rgb(183, 195, 85);
+      }
+
+      &.stop-track {
+        background-color: rgb(255, 159, 85);
+      }
+    }
+  }
+}

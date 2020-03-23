@@ -1,17 +1,42 @@
-main.overview {
+.overview {
+
+  &__wrapper {
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 30px;
+
+    @media (min-width: 850px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1440px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: 1920px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
 
   .overview-items-list {
-    margin-bottom: 20px;
+    margin-top: 30px;
+    border: 1px solid rgba($blackColor, .2);
+    border-radius: 10px;
+    position: relative;
+    padding: 10px 0;
   }
 
   .name {
     font-size: 1rem;
-    margin-bottom: 15px;
     opacity: .5;
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    top: -25px;
+    left: 15px;
+    position: absolute;
 
     &:first-child {
       margin-top: 0;
@@ -20,31 +45,22 @@ main.overview {
 
   .overview-item {
     width: 100%;
-    border: 1px solid $whiteColor;
-    padding: 0 20px;
-    height: 50px;
+    padding: 10px 15px;
     box-sizing: border-box;
-    border-radius: 4px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
-    margin-bottom: 10px;
     color: $blackColor;
     text-decoration: none;
 
-    &:hover {
-      background: rgba($primaryColor, .15);
-      border-color: $primaryColor;
-    }
-
     svg {
-      color: red;
+      color: $dangerColor;
       margin-right: 12px;
       stroke-width: 1px !important;
 
       &.true {
-        color: green
+        color: $successColor
       }
 
       &.external {
@@ -63,5 +79,6 @@ main.overview {
     margin-bottom: 10px;
     line-height: 2;
     opacity: .6;
+    display: block;
   }
 }

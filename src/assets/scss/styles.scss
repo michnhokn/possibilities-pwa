@@ -1,4 +1,6 @@
 $primaryColor: #FFDF76;
+$dangerColor: #bb3633;
+$successColor: #addc8a;
 
 $blackColor: #111111;
 $whiteColor: #ffffff;
@@ -10,12 +12,17 @@ $whiteColor: #ffffff;
   padding: 0;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   color: $blackColor;
   font-family: 'Open Sans', sans-serif;
 }
 
-svg {
+svg.feather-icon {
   width: 20px;
   height: 20px;
   fill: none;
@@ -25,9 +32,21 @@ svg {
   stroke-linejoin: round;
 }
 
+.possibilities-pwa {
+  padding-top: 50px;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
 @import "components/header";
 @import "components/navigation";
 @import "views/base";
+@import "views/home";
 @import "views/overview";
 @import "views/system";
 @import "views/camera";
+@import "views/geolocation";
+@import "views/touch-gestures";
